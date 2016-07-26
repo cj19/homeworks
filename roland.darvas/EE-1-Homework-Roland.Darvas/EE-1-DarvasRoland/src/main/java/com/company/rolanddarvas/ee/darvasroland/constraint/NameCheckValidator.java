@@ -18,6 +18,10 @@ public class NameCheckValidator implements ConstraintValidator<NameCheck, UserDT
 
     @Override
     public boolean isValid(UserDTO user, ConstraintValidatorContext context) {
+        return nameValidator(user);
+    }
+
+    private boolean nameValidator(UserDTO user) {
         return (user.getFirstName() == null && user.getLastName() == null)
                 || (!StringUtils.isEmpty(user.getFirstName()) 
                 && !StringUtils.isEmpty(user.getLastName()));

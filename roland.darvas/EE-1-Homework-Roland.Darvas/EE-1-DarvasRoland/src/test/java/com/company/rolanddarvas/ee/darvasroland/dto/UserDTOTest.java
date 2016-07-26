@@ -47,10 +47,11 @@ public class UserDTOTest {
 
     @Test
     public void userNameNotLongEnough() {
-        testUserDTO.setUsername("sad");
+        String usernameShort = "sad";
+        testUserDTO.setUsername(usernameShort);
         Set<ConstraintViolation<UserDTO>> violations = validator.validate(testUserDTO);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("sad",
+        Assert.assertEquals(usernameShort,
                 violations.iterator().next().getInvalidValue());
     }
 
@@ -64,20 +65,22 @@ public class UserDTOTest {
 
     @Test
     public void passwordWithoutSpecialChar() {
-        testUserDTO.setPassword("darvasr");
+        String passwordWrong = "darvasr";
+        testUserDTO.setPassword(passwordWrong);
         Set<ConstraintViolation<UserDTO>> violations = validator.validate(testUserDTO);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("darvasr",
+        Assert.assertEquals(passwordWrong,
                 violations.iterator().next().getInvalidValue());
 
     }
 
     @Test
     public void passwordWithSpecialChar() {
-        testUserDTO.setPassword("darvasr~");
+        String passwordShort = "darvasr~";
+        testUserDTO.setPassword(passwordShort);
         Set<ConstraintViolation<UserDTO>> violations = validator.validate(testUserDTO);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("darvasr~",
+        Assert.assertEquals(passwordShort,
                 violations.iterator().next().getInvalidValue());
     }
 
@@ -130,10 +133,11 @@ public class UserDTOTest {
 
     @Test
     public void phoneWrongNumber() {
-        testUserDTO.setAddress("+273522328");
+        String phoneShort = "+273522328";
+        testUserDTO.setAddress(phoneShort);
         Set<ConstraintViolation<UserDTO>> violations = validator.validate(testUserDTO);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("+273522328", violations.iterator().next().getInvalidValue());
+        Assert.assertEquals(phoneShort, violations.iterator().next().getInvalidValue());
     }
 
     @Test
@@ -147,10 +151,11 @@ public class UserDTOTest {
 
     @Test
     public void emailIsWrong() {
-        testUserDTO.setEmail("@asda.com");
+        String emailWrong = "@asda.com";
+        testUserDTO.setEmail(emailWrong);
         Set<ConstraintViolation<UserDTO>> violations = validator.validate(testUserDTO);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("@asda.com", violations.iterator().next().getInvalidValue());
+        Assert.assertEquals(emailWrong, violations.iterator().next().getInvalidValue());
     }
 
     @Test

@@ -65,10 +65,11 @@ public class MobileTypeTest {
 
     @Test
     public void idIsNotLongEnough() {
-        testMobileType.setId("asdasdas");
+        String shortId = "asdasdas";
+        testMobileType.setId(shortId);
         Set<ConstraintViolation<MobileType>> violations = validator.validate(testMobileType);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("asdasdas", violations.iterator().next().getInvalidValue());
+        Assert.assertEquals(shortId, violations.iterator().next().getInvalidValue());
     }
 
     @Test
@@ -81,10 +82,11 @@ public class MobileTypeTest {
 
     @Test
     public void typeIsNotThreeLong() {
-        testMobileType.setType("as");
+        String shortPrice = "as";
+        testMobileType.setType(shortPrice);
         Set<ConstraintViolation<MobileType>> violations = validator.validate(testMobileType);
         Assert.assertEquals(1, violations.size());
-        Assert.assertEquals("as", violations.iterator().next().getInvalidValue());
+        Assert.assertEquals(shortPrice, violations.iterator().next().getInvalidValue());
     }
 
     @Test

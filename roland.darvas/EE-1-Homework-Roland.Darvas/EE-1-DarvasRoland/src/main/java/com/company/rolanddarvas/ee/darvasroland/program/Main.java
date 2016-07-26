@@ -20,13 +20,17 @@ public class Main {
     private static final UserDB USER = new UserDB();
 
     private static final MobileInventory INVENTORY = new MobileInventory();
+    
+    private static final String USERS_FILE = "users.json";
+    
+    private static final String MOBILES_FILE = "mobiles.json";
 
     private Main() {
     }
 
     private static void importUsers() throws IOException {
         List<UserDTO> users = MAPPER.readValue(Main.class.getClassLoader()
-                .getResource("users.json"),
+                .getResource(USERS_FILE),
                 new TypeReference<List<UserDTO>>() {
         });
         users.stream().forEach(USER::registrate);
@@ -35,7 +39,7 @@ public class Main {
     private static void importMobiles() throws IOException {
 
         List<MobileType> mobileTypes = MAPPER
-                .readValue(Main.class.getClassLoader().getResource("mobiles.json"),
+                .readValue(Main.class.getClassLoader().getResource(MOBILES_FILE),
                         new TypeReference<List<MobileType>>() {
                 });
 
