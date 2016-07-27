@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author darvasr
  */
 public class NameCheckValidator implements ConstraintValidator<NameCheck, UserDTO> {
-    
+
     @Override
     public void initialize(NameCheck a) {
         //no need to initialize here
@@ -18,12 +18,25 @@ public class NameCheckValidator implements ConstraintValidator<NameCheck, UserDT
 
     @Override
     public boolean isValid(UserDTO user, ConstraintValidatorContext context) {
-        return nameValidator(user);
+        return (isFirstNameNull(user) && isLastNameNull(user))
+                || (isFirstNameNotEmpty(user)
+                && isLastNameNotEmpty(user));
     }
 
-    private boolean nameValidator(UserDTO user) {
-        return (user.getFirstName() == null && user.getLastName() == null)
-                || (!StringUtils.isEmpty(user.getFirstName()) 
-                && !StringUtils.isEmpty(user.getLastName()));
+    private boolean isLastNameNotEmpty(UserDTO user) {
+        return (!StringUtils.isEmpty(user.getLastName()));
     }
+
+    private boolean isFirstNameNotEmpty(UserDTO user) {
+        return (!StringUtils.isEmpty(user.getFirstName()));
+    }
+
+    private boolean isLastNameNull(UserDTO user) {
+        return user.getLastName() == null;
+    }
+
+    private boolean isFirstNameNull(UserDTO user) {
+        return user.getFirstName() == null;
+    }
+
 }
