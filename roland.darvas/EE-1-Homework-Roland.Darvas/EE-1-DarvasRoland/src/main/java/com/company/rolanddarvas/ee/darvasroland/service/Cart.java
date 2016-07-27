@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class Cart {
 
-    private Map<MobileType, Integer> shoppingCart = new HashMap<>();
+    private final Map<MobileType, Integer> shoppingCart = new HashMap<>();
 
     private MobileInventory mobileInventory;
 

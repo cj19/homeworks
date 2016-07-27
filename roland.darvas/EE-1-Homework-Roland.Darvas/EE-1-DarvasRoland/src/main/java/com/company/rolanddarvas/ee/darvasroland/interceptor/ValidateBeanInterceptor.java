@@ -57,6 +57,14 @@ public class ValidateBeanInterceptor {
     }
 
     private String getViolationMessage(Set<ConstraintViolation<Object>> violations) {
-        return violations.iterator().next().getInvalidValue()+violations.toString();
+        StringBuilder message = new StringBuilder();
+        violations.stream().forEach((violation) -> {
+            message.append("Messages: ")
+                    .append(violation.getMessage()+" ")
+                    .append(violation.getMessageTemplate()+" ")
+                    .append("Properypath: ")
+                    .append(violation.getPropertyPath());
+        });
+        return message.toString();
     }
 }

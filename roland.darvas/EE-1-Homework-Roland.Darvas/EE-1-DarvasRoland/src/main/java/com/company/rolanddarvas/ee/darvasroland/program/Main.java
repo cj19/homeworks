@@ -26,12 +26,12 @@ import java.util.logging.Logger;
 public class Main {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    
+
     private static final String USERS_FILE = "users.json";
-    
+
     private static final String MOBILES_FILE = "mobiles.json";
 
-    private static final Logger LOGGER =Logger.getLogger(Main.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     private Main() {
     }
@@ -63,17 +63,17 @@ public class Main {
         MobileInventory mobileInventory = weldContainer.instance().select(MobileInventory.class).get();
         UserDB userDB = weldContainer.instance().select(UserDB.class).get();
 
-        //test interception type validation
-        try {
-            MobileType invalidType = new MobileType(null, Brand.APPLE, "bad", 500.0, CurrencyType.EUR, ColorType.BLACK);
-            mobileInventory.reserveMobile(invalidType, 500);
-        } catch (ValidationException ex) {
-            LOGGER.log(Level.SEVERE, "Exception while adding mobile", ex);
-        }
+        interceptionTest(mobileInventory);
 
+        testCart(userDB, mobileInventory);
+
+        weld.shutdown();
+    }
+
+    private static void testCart(UserDB userDB, MobileInventory mobileInventory) throws IOException {
         //test cart
         importUsers(userDB);
-        List<MobileType> importedTypes=importMobiles(mobileInventory);
+        List<MobileType> importedTypes = importMobiles(mobileInventory);
         for (MobileType mobile : importedTypes) {
             mobileInventory.returnMobile(mobile, 50);
         }
@@ -83,8 +83,16 @@ public class Main {
         testCart.add(importedTypes.get(4), 5);
         testCart.delete(importedTypes.get(0), 1);
         testCart.checkout();
+    }
 
-        weld.shutdown();
+    private static void interceptionTest(MobileInventory mobileInventory) {
+        //test interception type validation
+        try {
+            MobileType invalidType = new MobileType(null, Brand.APPLE, "bad", 500.0, CurrencyType.EUR, ColorType.BLACK);
+            mobileInventory.reserveMobile(invalidType, 500);
+        } catch (ValidationException ex) {
+            LOGGER.log(Level.SEVERE, "Exception while adding mobile", ex);
+        }
     }
 
 }
