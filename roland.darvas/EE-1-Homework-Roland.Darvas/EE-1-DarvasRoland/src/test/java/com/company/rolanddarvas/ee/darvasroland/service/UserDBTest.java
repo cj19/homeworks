@@ -22,7 +22,7 @@ public class UserDBTest {
     public void initTest() {
         testUserDB = new UserDB();
         testUser = createTestUser();
-        testUserDB.register(testUser);
+        testUserDB.registrate(testUser);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class UserDBTest {
     @Test(expected = UserAlreadyRegistrated.class)
     public void registerTwice(){
         UserDTO createdUser = testUserDB.getUser(testUser.getUsername());
-        UserDTO returnedUser = testUserDB.register(createdUser);
+        UserDTO returnedUser = testUserDB.registrate(createdUser);
         Assert.assertEquals(null, returnedUser);
     }
     
