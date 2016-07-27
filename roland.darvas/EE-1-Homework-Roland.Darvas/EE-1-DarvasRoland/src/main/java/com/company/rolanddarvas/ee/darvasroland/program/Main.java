@@ -71,7 +71,6 @@ public class Main {
     }
 
     private static void testCart(UserDB userDB, MobileInventory mobileInventory) throws IOException {
-        //test cart
         importUsers(userDB);
         List<MobileType> importedTypes = importMobiles(mobileInventory);
         for (MobileType mobile : importedTypes) {
@@ -86,7 +85,6 @@ public class Main {
     }
 
     private static void interceptionTest(MobileInventory mobileInventory) {
-        //test interception type validation
         try {
             MobileType invalidType = new MobileType(null, Brand.APPLE, "bad", 500.0, CurrencyType.EUR, ColorType.BLACK);
             mobileInventory.reserveMobile(invalidType, 500);
