@@ -1,20 +1,23 @@
 package com.company.rolanddarvas.ee.darvasroland.dto;
 
+import com.company.rolanddarvas.ee.darvasroland.annotation.ValidateBean;
 import com.company.rolanddarvas.ee.darvasroland.constraint.ManufacturerWithColor;
+import com.company.rolanddarvas.ee.darvasroland.model.Brand;
 import com.company.rolanddarvas.ee.darvasroland.model.ColorType;
 import com.company.rolanddarvas.ee.darvasroland.model.CurrencyType;
-import com.company.rolanddarvas.ee.darvasroland.model.Brand;
-import java.util.Objects;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  *
  * @author darvasr
  */
 @ManufacturerWithColor
+@ValidateBean
 public class MobileType {
 
     @NotNull

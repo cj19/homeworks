@@ -1,22 +1,22 @@
 [
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b23e-10b96e4ef00d",
       "manufacturer":"HTC",
-      "type":"One",
+      "type":"HTC One",
       "price":100000,
       "currency":"HUF",
       "color":"BLACK"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"HTC",
-      "type":"One",
+      "type":"HTC One",
       "price":100000,
       "currency":"HUF",
       "color":"BLUE"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"SAMSUNG",
       "type":"Galaxy S2",
       "price":100000,
@@ -24,7 +24,7 @@
       "color":"BLUE"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"SAMSUNG",
       "type":"Galaxy S3",
       "price":100000,
@@ -32,7 +32,7 @@
       "color":"WHITE"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"SAMSUNG",
       "type":"Galaxy S6",
       "price":100000,
@@ -40,7 +40,7 @@
       "color":"WHITE"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"APPLE",
       "type":"iphone3",
       "price":100000,
@@ -48,7 +48,7 @@
       "color":"WHITE"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"APPLE",
       "type":"iphone7",
       "price":100000,
@@ -56,7 +56,7 @@
       "color":"BLACK"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"APPLE",
       "type":"iphone6",
       "price":300,
@@ -64,7 +64,7 @@
       "color":"BLACK"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"APPLE",
       "type":"iphone1",
       "price":500,
@@ -72,7 +72,7 @@
       "color":"BLACK"
    },
    {
-      "id":null,
+      "id":"38400000-8cf0-11bd-b55e-10b96e4ef00d",
       "manufacturer":"SAMSUNG",
       "type":"GALAXY s1",
       "price":500,
