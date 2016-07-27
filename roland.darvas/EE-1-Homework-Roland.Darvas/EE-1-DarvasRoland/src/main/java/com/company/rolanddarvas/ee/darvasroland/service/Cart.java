@@ -86,7 +86,7 @@ public class Cart {
     }
 
     //calculate price in current rate currency
-    private Double calculatePriceToHUF(MobileType mobile, Integer amount) {
+    private static Double calculatePriceToHUF(MobileType mobile, Integer amount) {
         if (mobile.getCurrency() == CurrencyType.EUR) {
             return multiplyParameters(mobile.getPrice(), 313.19, amount);
         }
@@ -97,7 +97,7 @@ public class Cart {
         }
     }
 
-    private Double multiplyParameters(Double price, Double rate, Integer amount) {
+    private static Double multiplyParameters(Double price, Double rate, Integer amount) {
         return amount*(rate*price);
     }
 }

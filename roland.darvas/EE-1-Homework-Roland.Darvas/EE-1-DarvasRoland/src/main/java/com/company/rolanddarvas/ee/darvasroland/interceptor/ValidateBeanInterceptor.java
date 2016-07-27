@@ -11,6 +11,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by darvasr on 2016.07.27..
@@ -28,9 +30,14 @@ public class ValidateBeanInterceptor {
     }
 
     @AroundInvoke
-    public Object logMethod(InvocationContext ic) throws Exception {
+    public Object logMethod(InvocationContext ic) {
         checkAnnotation(ic.getParameters());
-        return ic.proceed();
+        try {
+            return ic.proceed();
+        } catch (Exception ex) {
+            Logger.getLogger(ValidateBeanInterceptor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     private void checkAnnotation(Object[] parameters) {

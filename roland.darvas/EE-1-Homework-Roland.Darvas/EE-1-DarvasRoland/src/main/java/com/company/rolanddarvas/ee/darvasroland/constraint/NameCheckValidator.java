@@ -23,19 +23,19 @@ public class NameCheckValidator implements ConstraintValidator<NameCheck, UserDT
                 && isLastNameNotEmpty(user));
     }
 
-    private boolean isLastNameNotEmpty(UserDTO user) {
-        return (!StringUtils.isEmpty(user.getLastName()));
+    private static boolean isLastNameNotEmpty(UserDTO user) {
+        return !StringUtils.isEmpty(user.getLastName());
     }
 
-    private boolean isFirstNameNotEmpty(UserDTO user) {
-        return (!StringUtils.isEmpty(user.getFirstName()));
+    private static boolean isFirstNameNotEmpty(UserDTO user) {
+        return !StringUtils.isEmpty(user.getFirstName());
     }
 
-    private boolean isLastNameNull(UserDTO user) {
+    private static boolean isLastNameNull(UserDTO user) {
         return user.getLastName() == null;
     }
 
-    private boolean isFirstNameNull(UserDTO user) {
+    private static boolean isFirstNameNull(UserDTO user) {
         return user.getFirstName() == null;
     }
 

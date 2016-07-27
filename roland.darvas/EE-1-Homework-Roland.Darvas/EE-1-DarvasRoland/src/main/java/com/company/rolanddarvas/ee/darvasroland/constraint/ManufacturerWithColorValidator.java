@@ -26,11 +26,11 @@ public class ManufacturerWithColorValidator implements ConstraintValidator<Manuf
         }
     }
 
-    private boolean isSamsungPhoneValid(MobileType mobile) {
+    private static boolean isSamsungPhoneValid(MobileType mobile) {
         return !(mobile.getManufacturer() == Brand.SAMSUNG && (mobile.getColor() == ColorType.GREEN));
     }
 
-    private boolean isApplePhoneValid(MobileType mobile) {
+    private static boolean isApplePhoneValid(MobileType mobile) {
         return (mobile.getManufacturer() == Brand.APPLE) && !((mobile.getColor()) == ColorType.BLACK
                 || mobile.getColor() == ColorType.WHITE);
     }
