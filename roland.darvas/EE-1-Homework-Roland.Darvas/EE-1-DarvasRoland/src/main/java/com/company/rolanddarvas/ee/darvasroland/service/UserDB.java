@@ -13,12 +13,12 @@ import java.util.Map;
  */
 public class UserDB {
 
-    private Map<String, UserDTO> registratedUsers = new HashMap<>();
+    private Map<String, UserDTO> registeredUser = new HashMap<>();
 
-    public UserDTO registrate(UserDTO user) {
-        if (!registratedUsers.containsKey(user.getUsername())) {
+    public UserDTO register(UserDTO user) {
+        if (!registeredUser.containsKey(user.getUsername())) {
             user.setRegistrationDate(new Date(System.currentTimeMillis()));
-            registratedUsers.put(user.getUsername(), user);
+            registeredUser.put(user.getUsername(), user);
             return user;
         } else {
             throw new UserAlreadyRegistrated("User already in the database!");
@@ -26,16 +26,16 @@ public class UserDB {
     }
 
     public UserDTO getUser(String username) {
-        if (registratedUsers.containsKey(username)) {
-            return registratedUsers.get(username);
+        if (registeredUser.containsKey(username)) {
+            return registeredUser.get(username);
         } else {
             throw new NoSuchUserException("There is no such user!");
         }
     }
 
     public boolean authenticate(String username, String password) {
-        return registratedUsers.containsKey(username)
-                && registratedUsers.get(username).getPassword().equals(password);
+        return registeredUser.containsKey(username)
+                && registeredUser.get(username).getPassword().equals(password);
 
     }
 

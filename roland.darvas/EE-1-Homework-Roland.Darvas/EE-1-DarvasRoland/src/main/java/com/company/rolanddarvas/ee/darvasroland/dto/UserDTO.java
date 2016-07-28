@@ -1,17 +1,14 @@
 package com.company.rolanddarvas.ee.darvasroland.dto;
 
-import com.company.rolanddarvas.ee.darvasroland.constraint.Address;
-import com.company.rolanddarvas.ee.darvasroland.constraint.DateValid;
-import com.company.rolanddarvas.ee.darvasroland.constraint.Email;
-import com.company.rolanddarvas.ee.darvasroland.constraint.NameCheck;
-import com.company.rolanddarvas.ee.darvasroland.constraint.Password;
-import com.company.rolanddarvas.ee.darvasroland.constraint.Phone;
+import com.company.rolanddarvas.ee.darvasroland.annotation.ValidateBean;
+import com.company.rolanddarvas.ee.darvasroland.constraint.*;
 import com.company.rolanddarvas.ee.darvasroland.model.Gender;
-import java.util.Date;
-import java.util.Objects;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -19,6 +16,7 @@ import javax.validation.constraints.Size;
  */
 @NameCheck
 @DateValid
+@ValidateBean
 public class UserDTO {
 
     @NotNull
