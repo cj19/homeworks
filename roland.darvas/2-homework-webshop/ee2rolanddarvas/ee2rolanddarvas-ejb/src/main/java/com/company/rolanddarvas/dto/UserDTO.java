@@ -7,6 +7,7 @@ import com.company.rolanddarvas.model.Gender;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ import java.util.Objects;
 @NameCheck
 @DateValid
 @ValidateBean
-public class UserDTO {
+public class UserDTO{
 
     @NotNull
     @Size(min = 6)

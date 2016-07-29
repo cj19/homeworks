@@ -17,6 +17,9 @@ public class UserDB {
 
     private Map<String, UserDTO> registeredUser = new HashMap<>();
 
+    public UserDB() {
+    }
+
     public UserDTO register(UserDTO user) {
         if (!registeredUser.containsKey(user.getUsername())) {
             user.setRegistrationDate(new Date(System.currentTimeMillis()));
@@ -41,4 +44,16 @@ public class UserDB {
 
     }
 
+    public boolean remove(String username){
+        if (registeredUser.containsKey(username)){
+            registeredUser.remove(username);
+            return true;
+        } else {
+            throw new NoSuchUserException("There is no such user!");
+        }
+    }
+
+    public Map<String, UserDTO> getRegisteredUser() {
+        return registeredUser;
+    }
 }
