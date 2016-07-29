@@ -17,8 +17,6 @@ public class UserDB {
 
     private Map<String, UserDTO> registeredUser = new HashMap<>();
 
-    public UserDB() {
-    }
 
     public UserDTO register(UserDTO user) {
         if (!registeredUser.containsKey(user.getUsername())) {

@@ -29,15 +29,11 @@ public class InitiateDB {
 
     private static final Logger LOGGER = Logger.getLogger(InitiateDB.class.getName());
 
-    @Inject
+
     private UserDB userDB;
 
-    @Inject
     private MobileInventory mobileInventory;
 
-
-    public InitiateDB() {
-    }
 
     @PostConstruct
     public void init() {
@@ -67,5 +63,15 @@ public class InitiateDB {
                         });
 
         mobileTypes.stream().forEach(mobileInventory::addNewMobileType);
+    }
+
+    @Inject
+    public void setMobileInventory(MobileInventory mobileInventory) {
+        this.mobileInventory = mobileInventory;
+    }
+
+    @Inject
+    public void setUserDB(UserDB userDB) {
+        this.userDB = userDB;
     }
 }

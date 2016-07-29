@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by darvasr on 2016.07.28..
  */
-@ApplicationPath("/web")
+@ApplicationPath("app")
 public class ApplicationConfig extends Application{
 
 
