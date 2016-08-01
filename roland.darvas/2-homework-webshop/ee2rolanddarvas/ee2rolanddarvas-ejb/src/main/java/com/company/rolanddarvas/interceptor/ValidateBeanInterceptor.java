@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,12 +59,16 @@ public class ValidateBeanInterceptor {
 
     private String getViolationMessage(Set<ConstraintViolation<Object>> violations) {
         StringBuilder message = new StringBuilder();
-        violations.stream().forEach((violation) -> {
-            message.append("Messages: ")
-                    .append(violation.getMessage()+" ")
-                    .append(violation.getMessageTemplate()+" ")
-                    .append("Properypath: ")
-                    .append(violation.getPropertyPath());
+        violations.stream().forEach(new Consumer<ConstraintViolation<Object>>() {
+            @Override
+            public void accept(ConstraintViolation<Object> violation) {
+                message.append("Messages: ").append(violation.getMessage())
+                        .append(" ")
+                        .append(violation.getMessageTemplate())
+                        .append(" ")
+                        .append("Properypath: ")
+                        .append(violation.getPropertyPath());
+            }
         });
         return message.toString();
     }

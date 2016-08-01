@@ -29,7 +29,7 @@ public class UserResource implements Serializable {
     @EJB
     private transient UserDB userDB;
 
-    private final transient Logger LOGGER = Logger.getLogger(UserResource.class.getName());
+    private static final transient Logger LOGGER = Logger.getLogger(UserResource.class.getName());
 
     @POST
     @Path("/add")

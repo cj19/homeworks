@@ -26,7 +26,7 @@ public class MobileInventoryResource implements Serializable {
     @EJB
     private transient MobileInventory mobileInventory;
 
-    private final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
+    private static final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
 
     @GET
     @Path("/count/{id}")
