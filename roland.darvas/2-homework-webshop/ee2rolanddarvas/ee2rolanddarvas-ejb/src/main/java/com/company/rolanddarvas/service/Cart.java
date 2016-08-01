@@ -34,6 +34,7 @@ public class Cart implements Serializable {
     }
 
     public Cart() {
+        //default constructor
     }
 
     public void add(MobileType id, int amountToAdd) {
