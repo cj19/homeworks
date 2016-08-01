@@ -63,12 +63,12 @@ public class UserResource implements Serializable {
 
     @POST
     @Path("/loginUser")
-    @Consumes(MediaType.APPLICATION_JSON)
     public UserDTO login(@Context HttpServletRequest request, UserDTO user) {
         if (userDB.authenticate(user.getUsername(), user.getPassword())) {
             UserDTO loggedUser = userDB.getUser(user.getUsername());
             HttpSession session = request.getSession(false);
             session.setAttribute("user", loggedUser);
+            LOGGER.log(Level.INFO, loggedUser.getUsername()+" has logged in!");
             return user;
         }
         throw new WebApplicationException("wrong username or password!");

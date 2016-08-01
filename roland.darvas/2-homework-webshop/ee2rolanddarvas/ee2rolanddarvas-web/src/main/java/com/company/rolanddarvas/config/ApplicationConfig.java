@@ -21,6 +21,9 @@ public class ApplicationConfig extends Application{
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.company.rolanddarvas.rest.UserResource.class);
+        resources.add(com.company.rolanddarvas.rest.MobileTypeResource.class);
+        resources.add(com.company.rolanddarvas.rest.MobileInventoryResource.class);
+        resources.add(com.company.rolanddarvas.rest.CartResource.class);
         resources.add(com.company.rolanddarvas.exception.GeneralExceptionMapper.class);
         resources.add(com.company.rolanddarvas.exception.PermissionDeniedMapper.class);
     }

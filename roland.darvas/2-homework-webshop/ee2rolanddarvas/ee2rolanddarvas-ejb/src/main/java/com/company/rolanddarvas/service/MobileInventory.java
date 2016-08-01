@@ -6,16 +6,16 @@ import com.company.rolanddarvas.exception.MobileAlreadyRegistered;
 import com.company.rolanddarvas.exception.NoSuchMobileException;
 
 import javax.ejb.Singleton;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
  * Created by darvasr on 2016.07.28..
  */
 @Singleton
-public class MobileInventory {
+public class MobileInventory implements Serializable{
 
     private Map<MobileType, Integer> inventory = new HashMap<>();
 
@@ -62,16 +62,19 @@ public class MobileInventory {
     }
 
     public MobileType getMobileById(String id) {
-        return inventory.entrySet().stream().filter(i -> i.getKey().getId().equals(id)).findFirst().get().getKey();
+        for (Map.Entry<MobileType, Integer> mobileEntry : inventory.entrySet()) {
+            MobileType mobile = mobileEntry.getKey();
+            if (mobile.getId().equals(id)) {
+                return mobile;
+            }
+        }
+        throw new NoSuchMobileException("No mobile in the inventory with such id!");
     }
 
-    public Map<MobileType, Integer> getInventory() {
-        return inventory;
-    }
 
-    public Optional<Integer> count(String id) {
+    public Integer count(String id) {
         return inventory.entrySet().stream().filter(i -> i.getKey().getId().equals(id))
-                .map(Map.Entry::getValue).findFirst();
+                .map(Map.Entry::getValue).findFirst().get();
     }
 
     public void increment(String id, Integer amount) {
@@ -86,5 +89,20 @@ public class MobileInventory {
             Integer value = mobile.getValue() - amount;
             mobile.setValue(value);
         });
+    }
+
+    public String getInventoryAsString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<MobileType, Integer> mobileEntry : inventory.entrySet()) {
+            MobileType mobile = mobileEntry.getKey();
+            sb.append("mobile memory address: ").append(mobile).append("\n")
+                    .append("It's id: ").append(mobile.getId()).append("\n")
+                    .append("It's manufacturer:").append(mobile.getManufacturer()).append("\n")
+                    .append("It's type:").append(mobile.getType()).append("\n")
+                    .append("It's price:").append(mobile.getPrice()).append("\n")
+                    .append("the currency:").append(mobile.getCurrency().toString()).append("\n")
+                    .append("It's color:").append(mobile.getColor().toString()).append("\n");
+        }
+        return sb.toString();
     }
 }

@@ -4,9 +4,11 @@ import com.company.rolanddarvas.dto.MobileType;
 import com.company.rolanddarvas.model.CurrencyType;
 
 import javax.ejb.Remove;
-import javax.ejb.Singleton;
 import javax.ejb.Stateful;
 import javax.ejb.StatefulTimeout;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -17,11 +19,12 @@ import java.util.logging.Logger;
  * Created by darvasr on 2016.07.28..
  */
 @Stateful
-@StatefulTimeout(value = 1, unit = TimeUnit.MINUTES)
-public class Cart {
+@SessionScoped
+public class Cart implements Serializable {
 
     private final Map<MobileType, Integer> shoppingCart = new HashMap<>();
 
+    @Inject
     private MobileInventory mobileInventory;
 
     private static final Logger LOGGER = Logger.getLogger(Cart.class.getName());
@@ -44,9 +47,9 @@ public class Cart {
         shoppingCart.put(id, amountInCart + amountToAdd);
     }
 
-    public void delete(MobileType id, int amountToDelete) {
+    public void remove(MobileType id, int amountToDelete) {
         if (amountToDelete <= 0) {
-            throw new IllegalArgumentException("Can't delete 0 or less mobiles...!");
+            throw new IllegalArgumentException("Can't remove 0 or less mobiles...!");
         }
         int itemsInCart = shoppingCart.getOrDefault(id, 0);
         if (amountToDelete > itemsInCart) {
@@ -75,7 +78,7 @@ public class Cart {
     }
 
     @Remove
-    public void checkout(){
+    public String checkout(){
         StringBuilder checkList = new StringBuilder();
         Double totalPrice = 0.0;
         for (Map.Entry<MobileType, Integer> entry : shoppingCart.entrySet()) {
@@ -92,6 +95,7 @@ public class Cart {
         }
         checkList.append("\nTotal price: ").append(totalPrice.toString()+" HUF");
         LOGGER.log(Level.INFO, checkList.toString());
+        return checkList.toString();
     }
 
     //calculate price in current rate currency
