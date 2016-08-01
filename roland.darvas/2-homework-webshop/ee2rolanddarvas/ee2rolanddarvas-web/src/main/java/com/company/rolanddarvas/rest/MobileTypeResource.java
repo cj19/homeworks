@@ -27,7 +27,7 @@ public class MobileTypeResource implements Serializable {
     @EJB
     private transient MobileInventory mobileInventory;
 
-    private final transient Logger LOGGER = Logger.getLogger(MobileTypeResource.class.getName());
+    private static final transient Logger LOGGER = Logger.getLogger(MobileTypeResource.class.getName());
 
     @POST
     @Path("/add")
