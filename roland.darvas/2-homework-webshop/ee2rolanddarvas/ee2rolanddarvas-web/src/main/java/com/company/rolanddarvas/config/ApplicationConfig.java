@@ -1,7 +1,5 @@
 package com.company.rolanddarvas.config;
 
-import com.company.rolanddarvas.rest.UserResource;
-
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -22,6 +20,8 @@ public class ApplicationConfig extends Application{
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(UserResource.class);
+        resources.add(com.company.rolanddarvas.rest.UserResource.class);
+        resources.add(com.company.rolanddarvas.exception.GeneralExceptionMapper.class);
+        resources.add(com.company.rolanddarvas.exception.PermissionDeniedMapper.class);
     }
 }
