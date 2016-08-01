@@ -24,7 +24,7 @@ import static com.company.rolanddarvas.utility.Session.validateUserLogin;
 public class CartResource implements Serializable {
 
     @EJB
-    private Cart cart;
+    private transient Cart cart;
 
     private final transient Logger LOGGER = Logger.getLogger(CartResource.class.getName());
 

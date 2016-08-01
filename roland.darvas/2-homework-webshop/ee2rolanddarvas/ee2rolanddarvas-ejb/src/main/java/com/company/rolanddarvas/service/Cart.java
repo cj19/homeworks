@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @SessionScoped
 public class Cart implements Serializable {
 
-    private final Map<MobileType, Integer> shoppingCart = new HashMap<>();
+    private transient Map<MobileType, Integer> shoppingCart = new HashMap<>();
 
     @Inject
     private MobileInventory mobileInventory;
