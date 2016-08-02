@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.company.rolanddarvas.utility.Session.validateAdminLogin;
+import static com.company.rolanddarvas.utility.LoginAssister.adminLogin;
 
 /**
  * Created by darvasr on 2016.07.28..
@@ -38,7 +38,7 @@ public class UserResource implements Serializable {
     @POST
     @Path("/add")
     public UserDTO addUser(@Context HttpServletRequest request, UserDTO user) {
-        validateAdminLogin(request);
+        adminLogin(request);
         userDB.register(user);
         LOGGER.log(Level.INFO, user.getUsername() + " added to the registered user's list!");
         return user;
@@ -47,7 +47,7 @@ public class UserResource implements Serializable {
     @DELETE
     @Path("/remove")
     public UserDTO removeUser(@Context HttpServletRequest request, UserDTO user) {
-        validateAdminLogin(request);
+        adminLogin(request);
         userDB.remove(user.getUsername());
         LOGGER.log(Level.INFO, user.getUsername() + " removed from the registered user's list!");
         return user;

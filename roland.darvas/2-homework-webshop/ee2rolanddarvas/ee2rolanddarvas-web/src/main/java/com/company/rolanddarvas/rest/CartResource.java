@@ -11,7 +11,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 
-import static com.company.rolanddarvas.utility.Session.validateUserLogin;
+import static com.company.rolanddarvas.utility.LoginAssister.userLogin;
 
 /**
  * Created by darvasr on 2016.08.01..
@@ -28,7 +28,7 @@ public class CartResource implements Serializable {
     @POST
     @Path("/add")
     public MobileType add(@Context HttpServletRequest request, MobileType mobileType) {
-        validateUserLogin(request);
+        userLogin(request);
         cart.add(mobileType, 1);
         return mobileType;
     }
@@ -36,7 +36,7 @@ public class CartResource implements Serializable {
     @DELETE
     @Path("/remove")
     public MobileType remove(@Context HttpServletRequest request, MobileType mobileType) {
-        validateUserLogin(request);
+        userLogin(request);
         cart.remove(mobileType, 1);
         return mobileType;
     }
@@ -44,7 +44,7 @@ public class CartResource implements Serializable {
     @POST
     @Path("/checkout")
     public String checkout(@Context HttpServletRequest request) {
-        validateUserLogin(request);
+        userLogin(request);
         String checkout = cart.checkout();
         request.getSession().invalidate();
         return checkout;

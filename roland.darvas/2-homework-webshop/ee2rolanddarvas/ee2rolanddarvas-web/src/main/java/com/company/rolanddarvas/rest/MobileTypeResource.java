@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.company.rolanddarvas.utility.Session.validateAdminLogin;
+import static com.company.rolanddarvas.utility.LoginAssister.adminLogin;
 
 /**
  * Created by darvasr on 2016.08.01..
@@ -32,7 +32,7 @@ public class MobileTypeResource implements Serializable {
     @POST
     @Path("/add")
     public MobileType addMobile(@Context HttpServletRequest request, MobileType mobileType){
-        validateAdminLogin(request);
+        adminLogin(request);
         mobileInventory.addNewMobileType(mobileType);
         LOGGER.log(Level.INFO, mobileType.getType()+" type added to the inventory list!");
         return mobileType;
@@ -41,7 +41,7 @@ public class MobileTypeResource implements Serializable {
     @DELETE
     @Path("/remove")
     public MobileType removeMobile(@Context HttpServletRequest request, MobileType mobileType){
-        validateAdminLogin(request);
+        adminLogin(request);
         mobileInventory.removeMobile(mobileType);
         LOGGER.log(Level.INFO, mobileType.getType()+" type removed from the inventory list!");
         return mobileType;

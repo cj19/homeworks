@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.company.rolanddarvas.utility.Session.validateUserLogin;
+import static com.company.rolanddarvas.utility.LoginAssister.userLogin;
 
 /**
  * Created by darvasr on 2016.08.01..
@@ -38,7 +38,7 @@ public class MobileInventoryResource implements Serializable {
     @Path("/add/{id}")
     public void add(@Context HttpServletRequest request, @PathParam("id") String id,
                           @QueryParam("amount") Integer amount){
-        validateUserLogin(request);
+        userLogin(request);
         mobileInventory.increment(id, amount);
         LOGGER.log(Level.INFO, "Mobile with the id: "+id+", amount got incremented by "+amount);
     }
@@ -47,7 +47,7 @@ public class MobileInventoryResource implements Serializable {
     @Path("/remove/{id}")
     public void remove(@Context HttpServletRequest request, @PathParam("id") String id,
                        @QueryParam("amount") Integer amount) {
-        validateUserLogin(request);
+        userLogin(request);
         mobileInventory.decrement(id, amount);
         LOGGER.log(Level.INFO, "Mobile with the id: "+id+", amount got decremented by "+amount);
     }
