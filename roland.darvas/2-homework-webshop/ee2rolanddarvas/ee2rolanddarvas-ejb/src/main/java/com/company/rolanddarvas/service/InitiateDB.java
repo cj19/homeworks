@@ -21,14 +21,13 @@ import java.util.logging.Logger;
 @Startup
 public class InitiateDB {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
     private static final String USERS_FILE = "users.json";
 
     private static final String MOBILES_FILE = "mobiles.json";
 
     private static final Logger LOGGER = Logger.getLogger(InitiateDB.class.getName());
 
+    private final ObjectMapper MAPPER = new ObjectMapper();
 
     private UserDB userDB;
 
@@ -44,7 +43,7 @@ public class InitiateDB {
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Files not found!", e);
         }
-        LOGGER.log(Level.INFO, "item: "+userDB.getUser("darvasr"));
+        LOGGER.log(Level.INFO, "item: " + userDB.getUser("darvasr"));
 
     }
 

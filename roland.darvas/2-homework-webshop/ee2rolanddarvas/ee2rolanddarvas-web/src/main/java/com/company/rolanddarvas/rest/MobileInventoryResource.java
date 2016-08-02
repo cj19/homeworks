@@ -1,6 +1,7 @@
 package com.company.rolanddarvas.rest;
 
 import com.company.rolanddarvas.service.MobileInventory;
+import com.company.rolanddarvas.utility.LoginAssister;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -12,8 +13,6 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.company.rolanddarvas.utility.LoginAssister.userLogin;
-
 /**
  * Created by darvasr on 2016.08.01..
  */
@@ -23,10 +22,10 @@ import static com.company.rolanddarvas.utility.LoginAssister.userLogin;
 @Consumes(MediaType.APPLICATION_JSON)
 public class MobileInventoryResource implements Serializable {
 
+    private static final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
+
     @EJB
     private transient MobileInventory mobileInventory;
-
-    private static final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
 
     @GET
     @Path("/count/{id}")
@@ -38,7 +37,7 @@ public class MobileInventoryResource implements Serializable {
     @Path("/add/{id}")
     public void add(@Context HttpServletRequest request, @PathParam("id") String id,
                           @QueryParam("amount") Integer amount){
-        userLogin(request);
+        LoginAssister.userLogin(request);
         mobileInventory.increment(id, amount);
         LOGGER.log(Level.INFO, "Mobile with the id: "+id+", amount got incremented by "+amount);
     }
@@ -47,7 +46,7 @@ public class MobileInventoryResource implements Serializable {
     @Path("/remove/{id}")
     public void remove(@Context HttpServletRequest request, @PathParam("id") String id,
                        @QueryParam("amount") Integer amount) {
-        userLogin(request);
+        LoginAssister.userLogin(request);
         mobileInventory.decrement(id, amount);
         LOGGER.log(Level.INFO, "Mobile with the id: "+id+", amount got decremented by "+amount);
     }

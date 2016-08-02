@@ -7,17 +7,19 @@ import com.company.rolanddarvas.exception.NoSuchMobileException;
 
 import javax.ejb.Singleton;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by darvasr on 2016.07.28..
  */
 @Singleton
-public class MobileInventory implements Serializable{
+public class MobileInventory implements Serializable {
 
-    private transient Map<MobileType, Integer> inventory = new HashMap<>();
+    private Map<MobileType, Integer> inventory = new HashMap<>();
+
+    private static final Logger LOGGER = Logger.getLogger(MobileInventory.class.getName());
 
     @ValidatorInterceptor
     public MobileType addNewMobileType(MobileType mobile) {
@@ -57,6 +59,7 @@ public class MobileInventory implements Serializable{
             inventory.remove(mobileType);
             return true;
         } else {
+            LOGGER.log(Level.SEVERE, "Could not remove mobile: "+mobileType.getId()+" "+mobileType.getType());
             throw new NoSuchMobileException("there is no such mobile in the inventory!");
         }
     }
@@ -91,18 +94,7 @@ public class MobileInventory implements Serializable{
         });
     }
 
-    public String getInventoryAsString() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<MobileType, Integer> mobileEntry : inventory.entrySet()) {
-            MobileType mobile = mobileEntry.getKey();
-            sb.append("mobile memory address: ").append(mobile).append("\n")
-                    .append("It's id: ").append(mobile.getId()).append("\n")
-                    .append("It's manufacturer:").append(mobile.getManufacturer()).append("\n")
-                    .append("It's type:").append(mobile.getType()).append("\n")
-                    .append("It's price:").append(mobile.getPrice()).append("\n")
-                    .append("the currency:").append(mobile.getCurrency().toString()).append("\n")
-                    .append("It's color:").append(mobile.getColor().toString()).append("\n");
-        }
-        return sb.toString();
+    public Collection<MobileType> getInventory() {
+        return Collections.unmodifiableSet(inventory.keySet());
     }
 }

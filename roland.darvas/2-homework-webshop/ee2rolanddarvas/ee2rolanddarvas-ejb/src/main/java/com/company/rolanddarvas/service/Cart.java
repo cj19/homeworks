@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @SessionScoped
 public class Cart implements Serializable {
 
-    private transient Map<MobileType, Integer> shoppingCart = new HashMap<>();
+    private Map<MobileType, Integer> shoppingCart = new HashMap<>();
 
     @Inject
     private MobileInventory mobileInventory;
@@ -97,8 +97,7 @@ public class Cart implements Serializable {
         return checkList.toString();
     }
 
-    //calculate price in current rate currency
-    private static Double calculatePriceToHUF(MobileType mobile, Integer amount) {
+    private Double calculatePriceToHUF(MobileType mobile, Integer amount) {
         if (mobile.getCurrency() == CurrencyType.EUR) {
             return multiplyParameters(mobile.getPrice(), 313.19, amount);
         }
@@ -109,7 +108,7 @@ public class Cart implements Serializable {
         }
     }
 
-    private static Double multiplyParameters(Double price, Double rate, Integer amount) {
+    private Double multiplyParameters(Double price, Double rate, Integer amount) {
         return amount*(rate*price);
     }
 }

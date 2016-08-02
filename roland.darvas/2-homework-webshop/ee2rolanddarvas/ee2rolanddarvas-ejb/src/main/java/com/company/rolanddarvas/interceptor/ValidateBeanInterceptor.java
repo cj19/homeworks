@@ -12,8 +12,6 @@ import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by darvasr on 2016.07.28..
@@ -36,9 +34,8 @@ public class ValidateBeanInterceptor {
         try {
             return ic.proceed();
         } catch (Exception ex) {
-            Logger.getLogger(ValidateBeanInterceptor.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ValidationException("Validation was not successful!");
         }
-        return null;
     }
 
     private void checkAnnotation(Object[] parameters) {
