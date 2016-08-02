@@ -10,7 +10,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 import static com.company.rolanddarvas.utility.Session.validateUserLogin;
 
@@ -24,9 +23,7 @@ import static com.company.rolanddarvas.utility.Session.validateUserLogin;
 public class CartResource implements Serializable {
 
     @EJB
-    private Cart cart;
-
-    private final transient Logger LOGGER = Logger.getLogger(CartResource.class.getName());
+    private transient Cart cart;
 
     @POST
     @Path("/add")

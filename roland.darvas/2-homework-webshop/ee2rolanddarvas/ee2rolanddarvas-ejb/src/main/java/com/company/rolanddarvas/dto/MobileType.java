@@ -101,16 +101,30 @@ public class MobileType {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         MobileType that = (MobileType) o;
 
-        if (!id.equals(that.id)) return false;
-        if (manufacturer != that.manufacturer) return false;
-        if (!type.equals(that.type)) return false;
-        if (!price.equals(that.price)) return false;
-        if (currency != that.currency) return false;
+        if (!id.equals(that.id)) {
+            return false;
+        }
+        if (manufacturer != that.manufacturer) {
+            return false;
+        }
+        if (!type.equals(that.type)) {
+            return false;
+        }
+        if (!price.equals(that.price)) {
+            return false;
+        }
+        if (currency != that.currency) {
+            return false;
+        }
         return color == that.color;
 
     }
@@ -126,4 +140,3 @@ public class MobileType {
         return result;
     }
 }
-

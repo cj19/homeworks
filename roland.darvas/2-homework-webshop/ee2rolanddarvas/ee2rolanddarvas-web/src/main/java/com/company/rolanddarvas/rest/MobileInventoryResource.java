@@ -24,9 +24,9 @@ import static com.company.rolanddarvas.utility.Session.validateUserLogin;
 public class MobileInventoryResource implements Serializable {
 
     @EJB
-    private MobileInventory mobileInventory;
+    private transient MobileInventory mobileInventory;
 
-    private final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
+    private static final transient Logger LOGGER = Logger.getLogger(MobileInventoryResource.class.getName());
 
     @GET
     @Path("/count/{id}")

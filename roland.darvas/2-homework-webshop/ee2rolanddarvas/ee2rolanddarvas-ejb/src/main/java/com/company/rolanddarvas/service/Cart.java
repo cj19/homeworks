@@ -5,13 +5,11 @@ import com.company.rolanddarvas.model.CurrencyType;
 
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
-import javax.ejb.StatefulTimeout;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
 @SessionScoped
 public class Cart implements Serializable {
 
-    private final Map<MobileType, Integer> shoppingCart = new HashMap<>();
+    private transient Map<MobileType, Integer> shoppingCart = new HashMap<>();
 
     @Inject
     private MobileInventory mobileInventory;
@@ -34,6 +32,7 @@ public class Cart implements Serializable {
     }
 
     public Cart() {
+        //default constructor
     }
 
     public void add(MobileType id, int amountToAdd) {

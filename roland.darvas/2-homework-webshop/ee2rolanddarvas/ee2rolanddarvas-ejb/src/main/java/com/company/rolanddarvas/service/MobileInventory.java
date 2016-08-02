@@ -17,7 +17,7 @@ import java.util.UUID;
 @Singleton
 public class MobileInventory implements Serializable{
 
-    private Map<MobileType, Integer> inventory = new HashMap<>();
+    private transient Map<MobileType, Integer> inventory = new HashMap<>();
 
     @ValidatorInterceptor
     public MobileType addNewMobileType(MobileType mobile) {
