@@ -11,10 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,11 +78,10 @@ public class UserResource implements Serializable {
 
     private void serializeUser(UserDTO loggedUser) {
         byte[] contentInBytes = loggedUser.toString().getBytes();
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("loggedUser"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("loggedUser.txt"))) {
             oos.write(contentInBytes);
+            oos.writeBytes("foobar");
             oos.writeObject(loggedUser);
-            oos.flush();
-            oos.close();
         } catch (IOException ex) {
             throw new SerialisationIncomplete("File not found, cant serialize!", ex);
         }

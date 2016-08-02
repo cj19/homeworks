@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.company.rolanddarvas</groupId>
-    <artifactId>ee2rolanddarvas-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
+         <groupId>com.company.rolanddarvas</groupId>
+         <artifactId>ee2rolanddarvas-web</artifactId>
+         <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>ee2rolanddarvas-web</name>
