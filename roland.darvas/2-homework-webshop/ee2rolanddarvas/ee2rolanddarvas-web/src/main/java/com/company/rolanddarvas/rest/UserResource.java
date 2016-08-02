@@ -82,7 +82,8 @@ public class UserResource implements Serializable {
     private void serializeUser(UserDTO loggedUser) {
         byte[] contentInBytes = loggedUser.toString().getBytes();
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("loggedUser"))) {
-            oos.writeObject(contentInBytes);
+            oos.write(contentInBytes);
+            oos.writeObject(loggedUser);
             oos.flush();
             oos.close();
         } catch (IOException ex) {

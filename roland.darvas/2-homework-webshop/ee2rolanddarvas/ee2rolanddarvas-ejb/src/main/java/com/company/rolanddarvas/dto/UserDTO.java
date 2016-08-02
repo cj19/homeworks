@@ -295,4 +295,21 @@ public class UserDTO implements Serializable {
             return new UserDTO(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", sex=" + sex +
+                ", registrationDate=" + registrationDate +
+                ", dateOfBirth=" + dateOfBirth +
+                ", admin=" + admin +
+                '}';
+    }
 }
