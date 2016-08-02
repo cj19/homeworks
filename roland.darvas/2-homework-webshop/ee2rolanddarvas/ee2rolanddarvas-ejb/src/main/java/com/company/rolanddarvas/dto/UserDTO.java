@@ -17,7 +17,7 @@ import java.util.Objects;
 @NameCheck
 @DateValid
 @ValidateBean
-public class UserDTO{
+public class UserDTO implements Serializable {
 
     @NotNull
     @Size(min = 6)
@@ -220,7 +220,6 @@ public class UserDTO{
         }
         return true;
     }
-
 
 
     public static class Builder {

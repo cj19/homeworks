@@ -1,6 +1,7 @@
 package com.company.rolanddarvas.rest;
 
 import com.company.rolanddarvas.dto.UserDTO;
+import com.company.rolanddarvas.exception.SerialisationIncomplete;
 import com.company.rolanddarvas.service.UserDB;
 
 import javax.ejb.EJB;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -67,10 +71,24 @@ public class UserResource implements Serializable {
         if (userDB.authenticate(user.getUsername(), user.getPassword())) {
             UserDTO loggedUser = userDB.getUser(user.getUsername());
             HttpSession session = request.getSession(false);
+            serializeUser(loggedUser);
             session.setAttribute("user", loggedUser);
-            LOGGER.log(Level.INFO, loggedUser.getUsername()+" has logged in!");
+            LOGGER.log(Level.INFO, loggedUser.getUsername() + " has logged in!");
             return user;
         }
         throw new WebApplicationException("wrong username or password!");
+    }
+
+    private void serializeUser(UserDTO loggedUser) {
+        try {
+            byte[] contentInBytes= loggedUser.toString().getBytes();
+            Out fos = new FileOutputStream("loggedUser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(contentInBytes);
+            oos.flush();
+            oos.close();
+        } catch (IOException ex) {
+            throw new SerialisationIncomplete("File not found, cant serialize!", ex);
+        }
     }
 }
