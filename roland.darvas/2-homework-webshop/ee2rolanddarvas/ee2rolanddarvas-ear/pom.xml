@@ -7,9 +7,9 @@
         <groupId>com.company.rolanddarvas</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-        <groupId>com.company.rolanddarvas</groupId>
-        <artifactId>ee2rolanddarvas-ear</artifactId>
-        <version>1.0-SNAPSHOT</version>
+    <groupId>com.company.rolanddarvas</groupId>
+    <artifactId>ee2rolanddarvas-ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>ear</packaging>
 
     <name>ee2rolanddarvas-ear</name>
@@ -41,12 +41,6 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>com.company.rolanddarvas</groupId>
-            <artifactId>ee2rolanddarvas-ejb</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
         <dependency>
             <groupId>com.company.rolanddarvas</groupId>
             <artifactId>ee2rolanddarvas-web</artifactId>
