@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="getMammals" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.company.rolanddarvas.sql_task1.animal.Ability</class>
+    <class>com.company.rolanddarvas.sql_task1.animal.Dolphin</class>
+    <class>com.company.rolanddarvas.sql_task1.animal.Grizzly</class>
+    <class>com.company.rolanddarvas.sql_task1.animal.Tiger</class>
+    <class>com.company.rolanddarvas.sql_task1.animal.Mammal</class>
+    <class>com.company.rolanddarvas.sql_task1.animal.Dog</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/test"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="rolika19"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
