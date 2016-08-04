@@ -30,8 +30,8 @@ public class ValidateBeanInterceptor {
 
     @AroundInvoke
     public Object logMethod(InvocationContext ic) {
-        checkAnnotation(ic.getParameters());
         try {
+            checkAnnotation(ic.getParameters());
             return ic.proceed();
         } catch (Exception ex) {
             throw new ValidationException("Validation was not successful!");

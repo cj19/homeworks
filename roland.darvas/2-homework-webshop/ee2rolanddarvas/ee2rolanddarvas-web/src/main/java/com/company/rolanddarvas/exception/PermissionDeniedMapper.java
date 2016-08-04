@@ -16,7 +16,7 @@ public class PermissionDeniedMapper implements ExceptionMapper<ForbiddenExceptio
 
     @Override
     public Response toResponse(ForbiddenException exception) {
-        Logger.getLogger(PermissionDeniedMapper.class.getName()).log(Level.SEVERE, null, exception);
+        Logger.getLogger(PermissionDeniedMapper.class.getName()).log(Level.WARNING, "Permission Denied has been threw!", exception);
         return Response.status(Response.Status.FORBIDDEN).entity(exception.getMessage())
                 .type(MediaType.APPLICATION_JSON).build();
     }

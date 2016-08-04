@@ -47,7 +47,8 @@ public class UserResource implements Serializable {
     }
 
     @GET
-    public UserDTO getUser(@Context HttpServletRequest request, @QueryParam("username") String username) {
+    @Path("/{username}")
+    public UserDTO getUser(@Context HttpServletRequest request, @PathParam("username") String username) {
         request.getSession(true).setMaxInactiveInterval(2000);
         return userDB.getUser(username);
     }
