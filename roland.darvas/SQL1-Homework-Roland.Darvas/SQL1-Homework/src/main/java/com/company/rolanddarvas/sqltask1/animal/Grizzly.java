@@ -1,5 +1,6 @@
 package com.company.rolanddarvas.sqltask1.animal;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 
@@ -9,11 +10,11 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQuery(name = "Grizzly.type", query = "SELECT b FROM Grizzly b WHERE b.type "
-        + "= com.company.rolanddarvas.sql_task1.animal.MammalType.PREDATOR")
+        + "= com.company.rolanddarvas.sqltask1.animal.MammalType.PREDATOR")
 public class Grizzly extends Mammal {
 
-    public Grizzly(Long id, MammalType type, String name) {
-        super(id, type, name);
+    public Grizzly(Long id, MammalType type, String name, List habitat) {
+        super(id, type, name, habitat);
     }
 
     public Grizzly() {

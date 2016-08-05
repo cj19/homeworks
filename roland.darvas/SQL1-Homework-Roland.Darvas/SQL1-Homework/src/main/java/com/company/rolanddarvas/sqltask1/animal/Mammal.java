@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +21,7 @@ import javax.persistence.TemporalType;
 public class Mammal extends Creature {
 
     @Column(name = "animal_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private MammalType type;
 
     @Column(length = 50)
@@ -29,11 +33,15 @@ public class Mammal extends Creature {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    public Mammal(Long id, MammalType type, String name) {
+    @ElementCollection
+    private List<String> habitat;
+
+    public Mammal(Long id, MammalType type, String name, List habitat) {
         super(id);
         this.type = type;
         this.name = name;
         this.creationDate = new Date(System.currentTimeMillis());
+        this.habitat = habitat;
     }
 
     public Mammal() {
@@ -72,4 +80,11 @@ public class Mammal extends Creature {
         this.creationDate = creationDate;
     }
 
+    public List<String> getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(List<String> habitat) {
+        this.habitat = habitat;
+    }
 }

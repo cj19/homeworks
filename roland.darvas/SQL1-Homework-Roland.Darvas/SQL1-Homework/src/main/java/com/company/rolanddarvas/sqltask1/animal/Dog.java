@@ -1,5 +1,6 @@
 package com.company.rolanddarvas.sqltask1.animal;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 
@@ -11,8 +12,8 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Dog.ability", query = "SELECT d FROM Dog d WHERE :ability MEMBER OF d.abilities")
 public class Dog extends Mammal {
 
-    public Dog(Long id, MammalType type, String name) {
-        super(id, type, name);
+    public Dog(Long id, MammalType type, String name, List habitat) {
+        super(id, type, name, habitat);
     }
 
     public Dog() {
