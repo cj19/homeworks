@@ -1,4 +1,4 @@
-package com.company.rolanddarvas.sql_task1.animal;
+package com.company.rolanddarvas.sqltask1.animal;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +17,20 @@ import javax.persistence.TypedQuery;
 public class Main {
 
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
+    
+    private static Ability stealth;
+    
+    private static Ability swim;
+    
+    private static Ability run;
+    
+    private static Tiger tiger;
+    
+    private static Dolphin dolphin;
+    
+    private static Grizzly bear;
+    
+    private static Dog dog;
 
     private Main() {
         //not to instantiate
@@ -24,13 +38,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Ability stealth = createAbility(1L, "stealth", "stealth");
-        Ability swim = createAbility(2L, "swim", "swim");
-        Ability run = createAbility(3L, "run", "run");
-        Tiger tiger = new Tiger(1L, MammalType.PREDATOR, "tigris");
-        Dolphin dolphin = new Dolphin(2L, MammalType.HERBIVORE, "delfin");
-        Grizzly bear = new Grizzly(3L, MammalType.PREDATOR, "yogi bear");
-        Dog dog = new Dog(4L, MammalType.PREDATOR, "doge");
+        stealth = createAbility(1L, "stealth", "stealth");
+        swim = createAbility(2L, "swim", "swim");
+        run = createAbility(3L, "run", "run");
+        tiger = new Tiger(1L, MammalType.PREDATOR, "tigris");
+        dolphin = new Dolphin(2L, MammalType.HERBIVORE, "delfin");
+        bear = new Grizzly(3L, MammalType.PREDATOR, "yogi bear");
+        dog = new Dog(4L, MammalType.PREDATOR, "doge");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("getMammals");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -39,13 +53,8 @@ public class Main {
         persistAnimals(em, tiger, dolphin, bear, dog);
         setAbilitiesToAnimals(tiger, run, swim, stealth, dolphin, bear, dog);
         setAnimalsToAbilities(stealth, tiger, dog, swim, dolphin, run, bear);
-        tiger = em.merge(tiger);
-        dog = em.merge(dog);
-        bear = em.merge(bear);
-        dolphin = em.merge(dolphin);
-        stealth = em.merge(stealth);
-        run = em.merge(run);
-        swim = em.merge(swim);
+        mergeAnimals(em);
+        mergeAbilities(em);
         tx.commit();
 
         abilityQuery(em);
@@ -63,6 +72,19 @@ public class Main {
         LOG.log(Level.INFO, tiger.toString());
         em.close();
         emf.close();
+    }
+
+    private static void mergeAbilities(EntityManager em) {
+        em.merge(stealth);
+        em.merge(run);
+        em.merge(swim);
+    }
+
+    private static void mergeAnimals(EntityManager em) {
+        em.merge(tiger);
+        em.merge(dog);
+        em.merge(bear);
+        em.merge(dolphin);
     }
 
     private static Dog dogQuery(EntityManager em) {

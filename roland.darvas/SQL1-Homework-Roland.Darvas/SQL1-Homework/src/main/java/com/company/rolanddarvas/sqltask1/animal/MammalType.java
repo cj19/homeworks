@@ -1,4 +1,4 @@
-package com.company.rolanddarvas.sql_task1.animal;
+package com.company.rolanddarvas.sqltask1.animal;
 
 /**
  *
