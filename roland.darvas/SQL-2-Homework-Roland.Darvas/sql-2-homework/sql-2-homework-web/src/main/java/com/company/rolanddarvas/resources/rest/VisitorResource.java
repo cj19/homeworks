@@ -28,7 +28,7 @@ public class VisitorResource {
     }
 
     @POST
-    public Response createVisitor(VisitorDTO visitorDTO) {
+    public Response create(VisitorDTO visitorDTO) {
         Visitor visitor = visitorService.createVisitor(visitorDTO);
         return Response.ok(visitor).build();
     }

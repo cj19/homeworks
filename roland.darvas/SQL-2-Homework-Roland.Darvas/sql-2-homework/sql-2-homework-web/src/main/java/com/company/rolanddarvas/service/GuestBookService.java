@@ -4,6 +4,7 @@ import com.company.rolanddarvas.entity.GuestBook;
 import com.company.rolanddarvas.entity.Visitor;
 import com.company.rolanddarvas.model.dto.GuestBookDTO;
 import com.company.rolanddarvas.model.dto.GuestBookListDTO;
+import com.company.rolanddarvas.model.dto.UpdateGuestBookDTO;
 import com.company.rolanddarvas.repository.GuestBookRepository;
 import com.company.rolanddarvas.util.management.AmusementParkManagement;
 
@@ -76,11 +77,11 @@ public class GuestBookService {
         return guestBook;
     }
 
-    public GuestBook updateGuestBook(Long guestBookId, GuestBookDTO guestBookDTO) {
+    public GuestBook updateGuestBook(Long guestBookId, UpdateGuestBookDTO guestBookDTO) {
         GuestBook guestBook = guestBookRepository.find(GuestBook.class, guestBookId);
         guestBook.setId(guestBookId);
 
-        guestBook.setAmusementParkId(amusementParkService.getAmusementParkById(guestBookDTO.getAmusementParkId()));
+        guestBook.setAmusementParkId(amusementParkService.getAmusementParkById(guestBookDTO.getParkId()));
         guestBook.setVisitorId(visitorService.getVisitorById(guestBookDTO.getVisitorId()));
 
         guestBook.setRecordDate(new Date(System.currentTimeMillis()));

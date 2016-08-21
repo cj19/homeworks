@@ -29,7 +29,7 @@ public class MachineResource {
     }
 
     @POST
-    public Response createMachine(MachineDTO machineDTO) {
+    public Response create(MachineDTO machineDTO) {
         Machine machine = machineService.createMachine(machineDTO);
         return Response.ok(machine).build();
     }
@@ -77,14 +77,14 @@ public class MachineResource {
     }
 
     @GET
-    @Path("limited")
-    public Response getLimited(Integer ageLimit) {
+    @Path("limited/{ageLimit}")
+    public Response getLimited(@PathParam("ageLimit") Integer ageLimit) {
         MachineListDTO machines = machineService.getMachinesAboveAgeLimit(ageLimit);
         return Response.ok(machines).build();
     }
 
     @GET
-    public Response getAllMachine() {
+    public Response getAllMachines() {
         MachineListDTO machines = machineService.getAllMachines();
         return Response.ok(machines).build();
     }

@@ -3,6 +3,7 @@ package com.company.rolanddarvas.resources.rest;
 import com.company.rolanddarvas.entity.GuestBook;
 import com.company.rolanddarvas.model.dto.GuestBookDTO;
 import com.company.rolanddarvas.model.dto.GuestBookListDTO;
+import com.company.rolanddarvas.model.dto.UpdateGuestBookDTO;
 import com.company.rolanddarvas.service.GuestBookService;
 
 import javax.inject.Inject;
@@ -29,14 +30,14 @@ public class GuestBookResource {
 
     @POST
     @Path("visitor/{visitorId}")
-    public Response createBook(@PathParam("visitorId") Long visitorId, GuestBookDTO guestBookDTO) {
+    public Response create(@PathParam("visitorId") Long visitorId, GuestBookDTO guestBookDTO) {
         GuestBook guestBook = guestBookService.createGuestBook(visitorId, guestBookDTO);
         return Response.ok(guestBook).build();
     }
 
     @PUT
     @Path("{id}")
-    public Response updateBook(@PathParam("id") Long id, GuestBookDTO guestBookDTO) {
+    public Response updateBook(@PathParam("id") Long id, UpdateGuestBookDTO guestBookDTO) {
         GuestBook guestBook = guestBookService.updateGuestBook(id, guestBookDTO);
         return Response.ok(guestBook).build();
     }
@@ -70,7 +71,7 @@ public class GuestBookResource {
     }
 
     @GET
-    public Response getAll() {
+    public Response getAllBooks() {
         GuestBookListDTO guestBooks = guestBookService.getAllGuestBooks();
         return Response.ok(guestBooks).build();
     }

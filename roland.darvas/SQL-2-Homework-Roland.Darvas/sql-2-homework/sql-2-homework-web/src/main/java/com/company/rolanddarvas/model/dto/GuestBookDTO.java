@@ -5,10 +5,6 @@ package com.company.rolanddarvas.model.dto;
  */
 public class GuestBookDTO {
 
-    private Long amusementParkId;
-
-    private Long visitorId;
-
     private String record;
 
     public GuestBookDTO(String record) {
@@ -17,22 +13,6 @@ public class GuestBookDTO {
 
     public GuestBookDTO() {
         //Default constructor
-    }
-
-    public Long getAmusementParkId() {
-        return amusementParkId;
-    }
-
-    public void setAmusementParkId(Long amusementParkId) {
-        this.amusementParkId = amusementParkId;
-    }
-
-    public Long getVisitorId() {
-        return visitorId;
-    }
-
-    public void setVisitorId(Long visitorId) {
-        this.visitorId = visitorId;
     }
 
     public String getRecord() {

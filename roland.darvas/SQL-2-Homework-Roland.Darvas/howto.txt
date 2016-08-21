@@ -1,0 +1,324 @@
+ApplicationServer : Wildfly 10.0 final , Database: Maria DB
+
+Amusement Park Resource
+
+park.create
+
+create new amusement park
+
+POST /sql-2-homework-web/app/park
+
+body:JSON
+Content-type: application/json
+{
+    "name": "park1",
+    "address":
+    {
+        "postcode": "2133",
+        "country": "Hungary",
+        "city": "Budapest",
+        "street": "Petofi Sreet",
+        "houseNumber": "31/A"
+    },
+    "fund": 100000,
+    "land": 100000,
+	"ticketPrice": 100
+}
+
+
+park.getAllParks
+
+get all amusement parks
+
+GET /sql-2-homework-web/app/park
+
+park.getAmusementPark
+
+get an amusement park by id
+
+GET /sql-2-homework-web/app/park/{id}
+
+park.getVisitorsOfPark
+
+get visitors of an amusement park
+
+GET /sql-2-homework-web/app/park/{id}/visitors
+
+park.getIdleVisitorOfPark
+
+get idle visitors
+
+GET /sql-2-homework-web/app/park/{id}/idleVisitors
+
+park.getMachinesOfPark
+
+get machines of an amusement park
+
+GET /sql-2-homework-web/app/park/{id}/machines
+
+park.updatePark
+
+update amusement park
+
+PUT /sql-2-homework-web/app/park/{id}
+
+body:
+JSON
+Content-type: application/json
+{
+    "name": "park2",
+    "address":
+    {
+        "postcode": "2133",
+        "country": "Hungary",
+        "city": "V�c",
+        "street": "Mad�ch",
+        "houseNumber": "2"
+    },
+    "fund": 234234234,
+    "land": 22222,
+	"ticketPrice": 200
+}
+
+
+park.deletePark
+
+delete amusement park
+
+DELETE /sql-2-homework-web/app/park/{id}
+
+
+
+Machine Resource
+
+Machine.create
+
+create a machine
+
+POST /sql-2-homework-web/app/machine
+
+body:
+JSON
+Content-type: application/json
+{
+    "fancyName": "Machine1",
+    "size": 100,
+    "price": 99999,
+   "ticketPrice": 999,
+    "requiredSpace": 5,
+    "freeSpace": 5,
+    "type": "GHOST_RIDE",
+    "ageLimit": 18,
+    "closed": false
+}
+
+
+Machine.getAllMachines
+
+get all machines
+
+GET /sql-2-homework-web/app/machine
+
+Machine.getMachine
+
+read a machine by id
+
+GET /sql-2-homework-web/app/machine/{id}
+
+Machine.getVisitorsByMachineId
+
+get visitors on a machine
+
+GET /sql-2-homework-web/app/machine/{id}/visitors
+
+Machine.updateMachine
+
+update a machine
+
+PUT /sql-2-homework-web/app/machine/{id}
+
+body:
+Content-type: application/json
+JSON
+{
+    "fancyName": "Gocart",
+    "size": 100,
+    "price": 5000,
+   "ticketPrice": 100,
+    "requiredSpace": 5,
+    "freeSpace": 2,
+    "type": "GOCART",
+    "ageLimit": 8,
+    "closed": false
+}
+
+
+Machine.closeMachine
+
+close opened machine
+
+POST /sql-2-homework-web/app/machine/{id}/closed
+
+Machine.openMachine
+
+open closed machine
+
+POST /sql-2-homework-web/app/machine/{id}/open
+
+Machine.addToPark
+
+add a machine to an amusement park
+
+POST /sql-2-homework-web/app/machine/{machineId}/{parkId}
+
+Machine.getLimited
+
+get machines with the age restriction
+
+POST /sql-2-homework-web/app/machine/limeted/{ageLimit}
+
+Machine.delete
+
+delete a machine
+
+DELETE /sql-2-homework-web/app/machine/{id}
+
+
+
+
+Visitor Resource
+
+Visitor.create
+
+create a visitor
+
+POST /sql-2-homework-web/app/visitor
+
+body:
+JSON
+{
+	"money": 10000,
+    "age": 28
+}
+
+
+Visitor.getAllVisitors
+
+get all visitors
+
+GET /sql-2-homework-web/app/visitor
+
+Visitor.getVisitor
+
+get visitor by id
+
+GET /sql-2-homework-web/app/visitor/{id}
+
+Visitor.updateVisitor
+
+update visitor
+
+PUT /sql-2-homework-web/app/visitor/{id}
+
+body:
+JSON
+Content-type: application/json
+{
+	"money": 500000,
+	"age": 28
+}
+
+
+Visitor.addToPark
+
+add to amusement park
+
+POST /sql-2-homework-web/app/visitor/{visitorId}/park/{parkId}
+
+Visitor.removeFromPark
+
+leave from amusement park
+
+DELETE /sql-2-homework-web/app/visitor/{id}/park
+
+Visitor.addToMachine
+
+add visitor to machine
+
+POST /sql-2-homework-web/app/visitor/{visitorId}/machine/{machineId}
+
+Visitor.removeFromMachine
+
+remove visitor from a machine
+
+DELETE /sql-2-homework-web/app/visitor/{id}/machine
+
+
+
+
+Guestbook Resource
+
+Guestbook.create
+
+create guest book entry for visitor whos in an amusement park
+
+POST /sql-2-homework-web/app/guestbook/visitor/{visitorId}
+
+body:
+JSON
+Content-type: application/json
+{
+	"record": "wassup"
+}
+
+Guestbook.getAllBooks
+
+get records
+
+GET /sql-2-homework-web/app/guestbook
+
+Guestbook.getBook
+
+read guestbook entry by id
+
+GET /sql-2-homework-web/app/guestbook/{id}
+
+Guestbook.getBooksByParkId
+
+get guestbook records By park id
+
+GET /sql-2-homework-web/app/guestbook/park/{parkId}
+
+Guestbook.getBookByVisitorId
+
+get guestbook records by a visitor Id
+
+GET /sql-2-homework-web/app/guestbook/visitors/{visitorId}
+
+Guestbook.getBooksByVisitorAndParkId
+
+get guestbook records By visitor id and park id
+
+GET /sql-2-homework-web/app/guestbook/visitor/{visitorId}/{parkId}
+
+Guestbook.updateBook
+
+update a guestbook entry
+
+PUT /sql-2-homework-web/app/guestbook/{id}
+
+body:
+JSON
+Content-type: application/json
+{
+	"parkId": 1,
+	"visitorId": 1,
+	"record": "oh shit wassup"
+}
+
+
+Guestbook.deleteBook
+
+delete a guestbook
+
+DELETE /sql-2-homework-web/app/guestbook/{id}

@@ -68,7 +68,7 @@ public class AmusementParkResource {
     }
 
     @GET
-    public Response getAll() {
+    public Response getAllParks() {
         AmusementParkListDTO amusementParks = amusementParkService.getAmusementParkList();
         return Response.ok(amusementParks).build();
     }
