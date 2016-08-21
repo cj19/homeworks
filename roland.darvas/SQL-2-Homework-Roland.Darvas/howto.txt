@@ -71,8 +71,8 @@ Content-type: application/json
     {
         "postcode": "2133",
         "country": "Hungary",
-        "city": "V�c",
-        "street": "Mad�ch",
+        "city": "Vac",
+        "street": "Madach",
         "houseNumber": "2"
     },
     "fund": 234234234,
