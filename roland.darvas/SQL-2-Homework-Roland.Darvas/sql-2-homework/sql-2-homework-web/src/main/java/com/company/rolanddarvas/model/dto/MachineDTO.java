@@ -25,18 +25,6 @@ public class MachineDTO {
 
     private Boolean closed;
 
-    public MachineDTO(String fancyName, Long size, Long price, Long ticketPrice, Long requiredSpace, Integer freeSpace, Integer ageLimit, MachineType type, Boolean closed) {
-        this.fancyName = fancyName;
-        this.size = size;
-        this.price = price;
-        this.ticketPrice = ticketPrice;
-        this.requiredSpace = requiredSpace;
-        this.freeSpace = freeSpace;
-        this.ageLimit = ageLimit;
-        this.type = type;
-        this.closed = closed;
-    }
-
     public MachineDTO() {
         //Default constructor
     }

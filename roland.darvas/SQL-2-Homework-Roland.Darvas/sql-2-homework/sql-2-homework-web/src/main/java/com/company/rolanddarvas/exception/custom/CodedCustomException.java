@@ -5,7 +5,7 @@ package com.company.rolanddarvas.exception.custom;
  */
 public class CodedCustomException extends RuntimeException {
 
-    private String code;
+    private final String code;
 
     public CodedCustomException(String message, String code) {
         super(message);

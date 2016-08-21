@@ -4,8 +4,6 @@ import com.company.rolanddarvas.entity.Machine;
 import com.company.rolanddarvas.entity.Visitor;
 import com.company.rolanddarvas.exception.custom.machine.*;
 
-import java.util.Objects;
-
 /**
  * Created by darvasr on 2016.08.21..
  */
@@ -52,10 +50,6 @@ public class MachineManagement {
 
     private static boolean isVisitorOnMachine(Visitor visitor) {
         return visitor.hasCurrentMachine();
-    }
-
-    private static boolean isVisitorOnThisMachine(Visitor visitor, Machine machine) {
-        return isVisitorOnMachine(visitor) && Objects.equals(machine, visitor.getCurrentMachine());
     }
 
     public static void checkVisitorOnMachine(Visitor visitor) {
