@@ -13,8 +13,9 @@ public class EntityRepository {
     @PersistenceContext(unitName = "AmusementParkPU")
     protected EntityManager entityManager;
 
-    public <T> void create(T entity) {
+    public <T> T create(T entity) {
         entityManager.persist(entity);
+        return entity;
     }
 
     public <T> T update(T entity) {
@@ -25,9 +26,12 @@ public class EntityRepository {
         return entityManager.find(clazz, id);
     }
 
-    public <T> void delete(Class<T> clazz, Long id) {
+    public <T> T delete(Class<T> clazz, Long id) {
         T entity = find(clazz, id);
-        entityManager.remove(entity);
+        if (entity != null) {
+            entityManager.remove(entity);
+            return entity;
+        }
+        return null;
     }
-
 }

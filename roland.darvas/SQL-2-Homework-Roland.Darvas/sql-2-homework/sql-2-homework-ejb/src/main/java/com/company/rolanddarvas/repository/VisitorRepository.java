@@ -12,22 +12,27 @@ import java.util.List;
 @Stateless
 public class VisitorRepository extends EntityRepository {
 
-    public List<Visitor> getActiveVisitor(){
+    public List<Visitor> getActiveVisitor() {
         TypedQuery<Visitor> query =
                 entityManager.createQuery("SELECT v FROM Visitor v WHERE v.active = true ", Visitor.class);
         return query.getResultList();
     }
 
-    public List<Visitor> getVisitorByRestState(){
+    public List<Visitor> getVisitorByRestState() {
         TypedQuery<Visitor> query =
-                entityManager.createQuery("SELECT v FROM Visitor v WHERE v.state = model.VisitorState.REST", Visitor.class);
+                entityManager
+                        .createQuery("SELECT v FROM Visitor v WHERE v.state = com.company.rolanddarvas.model.VisitorState.REST", Visitor.class);
         return query.getResultList();
     }
 
-    public List<Visitor> getVisitorByOnMachineState(){
+    public List<Visitor> getVisitorByOnMachineState() {
         TypedQuery<Visitor> query =
-                entityManager.createQuery("SELECT v FROM Visitor v WHERE v.state = model.VisitorState.ON_MACHINE", Visitor.class);
+                entityManager
+                        .createQuery("SELECT v FROM Visitor v WHERE v.state = com.company.rolanddarvas.model.VisitorState.ON_MACHINE", Visitor.class);
         return query.getResultList();
     }
 
+    public List<Visitor> findAll() {
+        return entityManager.createQuery("SELECT v FROM Visitor v", Visitor.class).getResultList();
+    }
 }

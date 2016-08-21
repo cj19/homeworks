@@ -18,4 +18,14 @@ public class AmusementParkRepository extends EntityRepository {
         query.setParameter("addressId", addressId);
         return query.getResultList();
     }
+
+    public List<AmusementPark> findAll(){
+        return entityManager.createQuery("SELECT a FROM AmusementPark a", AmusementPark.class).getResultList();
+    }
+
+    public Long getIdleVisitors(Long parkId){
+        return entityManager
+                .createQuery("SELECT COUNT(v.id) FROM Visitor v WHERE v.currentPark = :parkId AND v.currentMachine IS NULL AND v.active = FALSE", Long.class)
+                .setParameter("parkId", parkId).getSingleResult();
+    }
 }

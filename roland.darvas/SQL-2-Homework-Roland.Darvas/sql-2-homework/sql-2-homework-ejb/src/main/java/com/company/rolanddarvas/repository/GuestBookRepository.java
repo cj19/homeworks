@@ -13,24 +13,36 @@ import java.util.List;
 @Stateless
 public class GuestBookRepository extends EntityRepository {
 
-    public List<GuestBook> getVisitorAfterRecordDate(Date recordDate) {
+    public List<GuestBook> findVisitorAfterRecordDate(Date recordDate) {
         TypedQuery<GuestBook> query =
                 entityManager.createQuery("SELECT g from GuestBook g WHERE g.recordDate > :recordDate", GuestBook.class);
+        query.setParameter("recordDate", recordDate);
         return query.getResultList();
     }
 
-    public List<GuestBook> getGuestBookByVisitorId(Long visitorId){
+    public List<GuestBook> findGuestBookByVisitorId(Long visitorId){
         TypedQuery<GuestBook> query =
                 entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :visitorId", GuestBook.class);
         query.setParameter("visitorId", visitorId);
         return query.getResultList();
     }
 
-    public List<GuestBook> getGuestBookByAmusementParkId(Long amusementParkId){
+    public List<GuestBook> findGuestBookByAmusementParkId(Long amusementParkId){
         TypedQuery<GuestBook> query =
                 entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :amusementParkId", GuestBook.class);
         query.setParameter("amusementParkId", amusementParkId);
         return query.getResultList();
     }
 
+    public List<GuestBook> findGuestBookByVisitorAndParkId(Long visitorId, Long parkId) {
+        TypedQuery<GuestBook> query =
+                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :visitorId AND g.amusementParkId = :parkId", GuestBook.class);
+        query.setParameter("visitorId", visitorId);
+        query.setParameter("parkId", parkId);
+        return query.getResultList();
+    }
+
+    public List<GuestBook> findAll(){
+        return entityManager.createQuery("SELECT g FROM GuestBook g", GuestBook.class).getResultList();
+    }
 }

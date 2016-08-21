@@ -24,6 +24,7 @@ public class Address {
     private String houseNumber;
 
     public Address() {
+        //default constructor
     }
 
     public Long getId() {
@@ -72,5 +73,44 @@ public class Address {
 
     public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Address address = (Address) o;
+        if (!id.equals(address.id)) {
+            return false;
+        }
+        if (!postcode.equals(address.postcode)) {
+            return false;
+        }
+        if (!country.equals(address.country)) {
+            return false;
+        }
+        if (!city.equals(address.city)) {
+            return false;
+        }
+        if (!street.equals(address.street)) {
+            return false;
+        }
+        return houseNumber.equals(address.houseNumber);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + postcode.hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + street.hashCode();
+        result = 31 * result + houseNumber.hashCode();
+        return result;
     }
 }

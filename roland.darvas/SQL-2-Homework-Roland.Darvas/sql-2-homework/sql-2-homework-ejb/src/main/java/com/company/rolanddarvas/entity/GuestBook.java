@@ -14,10 +14,12 @@ public class GuestBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(targetEntity = AmusementPark.class)
+    @ManyToOne(targetEntity = AmusementPark.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "amusement_park_id")
     private AmusementPark amusementParkId;
 
-    @ManyToOne(targetEntity = Visitor.class)
+    @ManyToOne(targetEntity = Visitor.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "visitor_id")
     private Visitor visitorId;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,5 +65,32 @@ public class GuestBook {
 
     public void setRecord(String record) {
         this.record = record;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GuestBook guestBook = (GuestBook) o;
+        if (!id.equals(guestBook.id)) return false;
+        if (!amusementParkId.equals(guestBook.amusementParkId)) return false;
+        if (!visitorId.equals(guestBook.visitorId)) return false;
+        if (!recordDate.equals(guestBook.recordDate)) return false;
+        return record.equals(guestBook.record);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + amusementParkId.hashCode();
+        result = 31 * result + visitorId.hashCode();
+        result = 31 * result + recordDate.hashCode();
+        result = 31 * result + record.hashCode();
+        return result;
     }
 }

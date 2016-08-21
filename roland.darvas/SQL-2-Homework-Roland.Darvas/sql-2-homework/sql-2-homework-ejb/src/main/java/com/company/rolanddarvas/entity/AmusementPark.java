@@ -1,6 +1,8 @@
 package com.company.rolanddarvas.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
 
 /**
  * Created by darvasr on 2016.08.19..
@@ -15,12 +17,20 @@ public class AmusementPark {
 
     private String name;
 
-    @OneToOne(targetEntity = Address.class)
+    @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
     private Address address;
 
     private Long fund;
 
     private Long land;
+
+    private Long ticketPrice;
+
+    @OneToMany(mappedBy = "currentPark", targetEntity = Visitor.class, cascade = CascadeType.ALL)
+    private List<Visitor> visitors;
+
+    @OneToMany(mappedBy = "amusementPark", targetEntity = Machine.class, cascade = CascadeType.ALL)
+    private List<Machine> machines;
 
     public Long getId() {
         return id;
@@ -62,4 +72,76 @@ public class AmusementPark {
         this.land = land;
     }
 
+    public Long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(Long ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    @XmlTransient
+    public List<Visitor> getVisitors() {
+        return visitors;
+    }
+
+    @XmlTransient
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public void setVisitors(List<Visitor> visitors) {
+        this.visitors = visitors;
+    }
+
+    public void setMachines(List<Machine> machines) {
+        this.machines = machines;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AmusementPark that = (AmusementPark) o;
+        if (!id.equals(that.id)) {
+            return false;
+        }
+        if (!name.equals(that.name)) {
+            return false;
+        }
+        if (!address.equals(that.address)) {
+            return false;
+        }
+        if (!fund.equals(that.fund)) {
+            return false;
+        }
+        if (!land.equals(that.land)) {
+            return false;
+        }
+        if (!ticketPrice.equals(that.ticketPrice)) {
+            return false;
+        }
+        if (visitors != null ? !visitors.equals(that.visitors) : that.visitors != null) {
+            return false;
+        }
+        return machines != null ? machines.equals(that.machines) : that.machines == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + fund.hashCode();
+        result = 31 * result + land.hashCode();
+        result = 31 * result + ticketPrice.hashCode();
+        result = 31 * result + (visitors != null ? visitors.hashCode() : 0);
+        result = 31 * result + (machines != null ? machines.hashCode() : 0);
+        return result;
+    }
 }

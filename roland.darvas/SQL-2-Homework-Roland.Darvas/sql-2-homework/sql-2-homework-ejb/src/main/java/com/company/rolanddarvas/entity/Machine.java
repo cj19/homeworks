@@ -3,6 +3,8 @@ package com.company.rolanddarvas.entity;
 import com.company.rolanddarvas.model.MachineType;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
 
 /**
  * Created by darvasr on 2016.08.19..
@@ -19,14 +21,28 @@ public class Machine {
 
     private Long size;
 
+    private Long price;
+
     private Long ticketPrice;
 
-    private Long space;
+    private Long requiredSpace;
+
+    private int freeSpace;
 
     @Enumerated(EnumType.STRING)
     private MachineType type;
 
-    private Integer ageLimit;
+    private int ageLimit;
+
+    private boolean closed;
+
+    @ManyToOne(targetEntity = AmusementPark.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "amusement_park_id")
+    private AmusementPark amusementPark;
+
+    @OneToMany(mappedBy = "currentMachine", targetEntity = Visitor.class,
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Visitor> visitors;
 
     public Long getId() {
         return id;
@@ -52,6 +68,14 @@ public class Machine {
         this.size = size;
     }
 
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
     public Long getTicketPrice() {
         return ticketPrice;
     }
@@ -60,12 +84,20 @@ public class Machine {
         this.ticketPrice = ticketPrice;
     }
 
-    public Long getSpace() {
-        return space;
+    public Integer getFreeSpace() {
+        return freeSpace;
     }
 
-    public void setSpace(Long space) {
-        this.space = space;
+    public void setFreeSpace(Integer freeSpace) {
+        this.freeSpace = freeSpace;
+    }
+
+    public Long getRequiredSpace() {
+        return requiredSpace;
+    }
+
+    public void setRequiredSpace(Long space) {
+        this.requiredSpace = space;
     }
 
     public MachineType getType() {
@@ -84,4 +116,75 @@ public class Machine {
         this.ageLimit = ageLimit;
     }
 
+    public AmusementPark getAmusementPark() {
+        return amusementPark;
+    }
+
+    public void setAmusementPark(AmusementPark amusementParkId) {
+        this.amusementPark = amusementParkId;
+    }
+
+    @XmlTransient
+    public List<Visitor> getVisitors() {
+        return visitors;
+    }
+
+    public void setVisitors(List<Visitor> visitors) {
+        this.visitors = visitors;
+    }
+
+    public Boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
+    }
+
+    public boolean hasNoVisitorsOn() {
+        return getVisitors().isEmpty();
+    }
+
+    public boolean hasAmusementPark() {
+        return amusementPark != null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Machine machine = (Machine) o;
+
+        if (freeSpace != machine.freeSpace) return false;
+        if (ageLimit != machine.ageLimit) return false;
+        if (closed != machine.closed) return false;
+        if (!id.equals(machine.id)) return false;
+        if (!fancyName.equals(machine.fancyName)) return false;
+        if (!size.equals(machine.size)) return false;
+        if (!price.equals(machine.price)) return false;
+        if (!ticketPrice.equals(machine.ticketPrice)) return false;
+        if (!requiredSpace.equals(machine.requiredSpace)) return false;
+        if (type != machine.type) return false;
+        if (!amusementPark.equals(machine.amusementPark)) return false;
+        return visitors.equals(machine.visitors);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + fancyName.hashCode();
+        result = 31 * result + size.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + ticketPrice.hashCode();
+        result = 31 * result + requiredSpace.hashCode();
+        result = 31 * result + freeSpace;
+        result = 31 * result + type.hashCode();
+        result = 31 * result + ageLimit;
+        result = 31 * result + (closed ? 1 : 0);
+        result = 31 * result + amusementPark.hashCode();
+        result = 31 * result + visitors.hashCode();
+        return result;
+    }
 }

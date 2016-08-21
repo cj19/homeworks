@@ -12,11 +12,22 @@ import java.util.List;
 @Stateless
 public class MachineRepository extends EntityRepository {
 
-    public List<Machine> getMachinesAboveAge(Integer ageLimit){
+    public List<Machine> getMachinesAboveAge(Integer ageLimit) {
         TypedQuery<Machine> query =
                 entityManager.createQuery("SELECT m FROM Machine m WHERE m.ageLimit >= :ageLimit", Machine.class);
         query.setParameter("ageLimit", ageLimit);
         return query.getResultList();
+    }
+
+    public Machine getMachineByParkId(Long parkId) {
+        TypedQuery<Machine> query =
+                entityManager.createQuery("SELECT m FROM Machine m WHERE m.amusementPark.id = :parkId", Machine.class);
+        query.setParameter("parkId", parkId);
+        return query.getSingleResult();
+    }
+
+    public List<Machine> findAll() {
+        return entityManager.createQuery("SELECT m FROM Machine m", Machine.class).getResultList();
     }
 }
 
