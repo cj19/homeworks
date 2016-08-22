@@ -41,13 +41,19 @@ public class UpdateGuestBookDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         UpdateGuestBookDTO that = (UpdateGuestBookDTO) o;
-
-        if (!parkId.equals(that.parkId)) return false;
-        if (!visitorId.equals(that.visitorId)) return false;
+        if (!parkId.equals(that.parkId)) {
+            return false;
+        }
+        if (!visitorId.equals(that.visitorId)) {
+            return false;
+        }
         return record.equals(that.record);
 
     }

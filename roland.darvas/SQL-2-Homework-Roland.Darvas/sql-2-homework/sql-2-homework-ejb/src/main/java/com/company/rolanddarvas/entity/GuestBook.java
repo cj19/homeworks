@@ -76,10 +76,18 @@ public class GuestBook {
             return false;
         }
         GuestBook guestBook = (GuestBook) o;
-        if (!id.equals(guestBook.id)) return false;
-        if (!amusementParkId.equals(guestBook.amusementParkId)) return false;
-        if (!visitorId.equals(guestBook.visitorId)) return false;
-        if (!recordDate.equals(guestBook.recordDate)) return false;
+        if (!id.equals(guestBook.id)) {
+            return false;
+        }
+        if (!amusementParkId.equals(guestBook.amusementParkId)){
+            return false;
+        }
+        if (!visitorId.equals(guestBook.visitorId)) {
+            return false;
+        }
+        if (!recordDate.equals(guestBook.recordDate)){
+            return false;
+        }
         return record.equals(guestBook.record);
 
     }

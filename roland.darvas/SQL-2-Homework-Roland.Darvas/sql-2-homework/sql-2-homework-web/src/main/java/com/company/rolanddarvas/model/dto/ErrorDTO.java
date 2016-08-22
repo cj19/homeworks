@@ -7,6 +7,10 @@ public class ErrorDTO {
 
     private String errorDetail;
 
+    public ErrorDTO() {
+        //Default constructor
+    }
+
     public String getErrorDetail() {
         return errorDetail;
     }
@@ -15,7 +19,4 @@ public class ErrorDTO {
         this.errorDetail = errorDetail;
     }
 
-    public ErrorDTO() {
-        //Default constructor
-    }
 }

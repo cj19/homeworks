@@ -14,13 +14,11 @@ public class AmusementParkListDTO {
     public AmusementParkListDTO(List<AmusementPark> amusementParks) {
         this.amusementParks = amusementParks;
     }
-
-    public List<AmusementPark> getAmusementParks() {
-        return amusementParks;
-    }
-
     public AmusementParkListDTO() {
         //Default constructor
+    }
+    public List<AmusementPark> getAmusementParks() {
+        return amusementParks;
     }
 
     public void setAmusementParks(List<AmusementPark> amusementParks) {
