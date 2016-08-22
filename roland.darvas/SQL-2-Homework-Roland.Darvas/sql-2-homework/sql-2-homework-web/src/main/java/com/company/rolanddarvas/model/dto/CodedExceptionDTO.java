@@ -9,16 +9,16 @@ public class CodedExceptionDTO {
 
     private String details;
 
+    public CodedExceptionDTO() {
+        //Default constructor
+    }
+
     public String getExceptionCode() {
         return exceptionCode;
     }
 
     public void setExceptionCode(String exceptionCode) {
         this.exceptionCode = exceptionCode;
-    }
-
-    public CodedExceptionDTO() {
-        //Default constructor
     }
 
     public String getDetails() {

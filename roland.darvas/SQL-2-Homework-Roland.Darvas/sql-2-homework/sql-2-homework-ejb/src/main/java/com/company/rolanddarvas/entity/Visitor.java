@@ -100,28 +100,44 @@ public class Visitor {
         this.currentMachine = currentMachine;
     }
 
-    public boolean hasAmusementPark(){
+    public boolean hasAmusementPark() {
         return currentPark != null;
     }
 
-    public boolean hasCurrentMachine(){
+    public boolean hasCurrentMachine() {
         return currentMachine != null;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Visitor visitor = (Visitor) o;
-
-        if (!id.equals(visitor.id)) return false;
-        if (state != visitor.state) return false;
-        if (!money.equals(visitor.money)) return false;
-        if (!enteringDate.equals(visitor.enteringDate)) return false;
-        if (!age.equals(visitor.age)) return false;
-        if (!active.equals(visitor.active)) return false;
-        if (currentPark != null ? !currentPark.equals(visitor.currentPark) : visitor.currentPark != null) return false;
+        if (!id.equals(visitor.id)){
+            return false;
+        }
+        if (state != visitor.state){
+            return false;
+        }
+        if (!money.equals(visitor.money)){
+            return false;
+        }
+        if (!enteringDate.equals(visitor.enteringDate)){
+            return false;
+        }
+        if (!age.equals(visitor.age)){
+            return false;
+        }
+        if (!active.equals(visitor.active)){
+            return false;
+        }
+        if (currentPark != null ? !currentPark.equals(visitor.currentPark) : visitor.currentPark != null){
+            return false;
+        }
         return currentMachine != null ? currentMachine.equals(visitor.currentMachine) : visitor.currentMachine == null;
 
     }

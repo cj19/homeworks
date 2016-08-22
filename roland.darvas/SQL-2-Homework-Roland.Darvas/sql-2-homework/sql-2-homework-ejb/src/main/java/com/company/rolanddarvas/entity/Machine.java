@@ -151,22 +151,46 @@ public class Machine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Machine machine = (Machine) o;
-
-        if (!id.equals(machine.id)) return false;
-        if (!fancyName.equals(machine.fancyName)) return false;
-        if (!size.equals(machine.size)) return false;
-        if (!price.equals(machine.price)) return false;
-        if (!ticketPrice.equals(machine.ticketPrice)) return false;
-        if (!requiredSpace.equals(machine.requiredSpace)) return false;
-        if (!freeSpace.equals(machine.freeSpace)) return false;
-        if (type != machine.type) return false;
-        if (!ageLimit.equals(machine.ageLimit)) return false;
-        if (!closed.equals(machine.closed)) return false;
-        if (!amusementPark.equals(machine.amusementPark)) return false;
+        if (!id.equals(machine.id)){
+            return false;
+        }
+        if (!fancyName.equals(machine.fancyName)){
+            return false;
+        }
+        if (!size.equals(machine.size)){
+            return false;
+        }
+        if (!price.equals(machine.price)) {
+            return false;
+        }
+        if (!ticketPrice.equals(machine.ticketPrice)){
+            return false;
+        }
+        if (!requiredSpace.equals(machine.requiredSpace)){
+            return false;
+        }
+        if (!freeSpace.equals(machine.freeSpace)){
+            return false;
+        }
+        if (type != machine.type) {
+            return false;
+        }
+        if (!ageLimit.equals(machine.ageLimit)){
+            return false;
+        }
+        if (!closed.equals(machine.closed)){
+            return false;
+        }
+        if (!amusementPark.equals(machine.amusementPark)){
+            return false;
+        }
         return visitors.equals(machine.visitors);
 
     }

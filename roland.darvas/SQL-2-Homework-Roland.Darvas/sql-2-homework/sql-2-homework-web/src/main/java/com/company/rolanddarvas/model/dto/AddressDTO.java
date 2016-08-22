@@ -69,15 +69,25 @@ public class AddressDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         AddressDTO that = (AddressDTO) o;
-
-        if (!postcode.equals(that.postcode)) return false;
-        if (!country.equals(that.country)) return false;
-        if (!city.equals(that.city)) return false;
-        if (!street.equals(that.street)) return false;
+        if (!postcode.equals(that.postcode)) {
+            return false;
+        }
+        if (!country.equals(that.country)) {
+            return false;
+        }
+        if (!city.equals(that.city)) {
+            return false;
+        }
+        if (!street.equals(that.street)) {
+            return false;
+        }
         return houseNumber.equals(that.houseNumber);
 
     }

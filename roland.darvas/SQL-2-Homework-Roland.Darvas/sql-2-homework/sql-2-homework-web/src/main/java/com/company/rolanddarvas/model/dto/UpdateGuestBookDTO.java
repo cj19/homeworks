@@ -15,6 +15,14 @@ public class UpdateGuestBookDTO {
         //default constructor
     }
 
+    public String getRecord() {
+        return record;
+    }
+
+    public void setRecord(String record) {
+        this.record = record;
+    }
+
     public Long getParkId() {
         return parkId;
     }
@@ -29,14 +37,6 @@ public class UpdateGuestBookDTO {
 
     public void setVisitorId(Long visitorId) {
         this.visitorId = visitorId;
-    }
-
-    public String getRecord() {
-        return record;
-    }
-
-    public void setRecord(String record) {
-        this.record = record;
     }
 
     @Override
