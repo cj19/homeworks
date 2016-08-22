@@ -29,9 +29,11 @@ public class MachineService {
     public Machine createMachine(MachineDTO machineDTO) {
         Machine machine = new Machine();
         machine.setFancyName(machineDTO.getFancyName());
-        machine.setSize(machine.getSize());
+        machine.setSize(machineDTO.getSize());
+        machine.setPrice(machineDTO.getPrice());
         machine.setTicketPrice(machineDTO.getTicketPrice());
         machine.setRequiredSpace(machineDTO.getRequiredSpace());
+        machine.setFreeSpace(machineDTO.getFreeSpace());
         machine.setType(machineDTO.getType());
         machine.setAgeLimit(machineDTO.getAgeLimit());
         machine.setClosed(false);

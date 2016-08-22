@@ -33,4 +33,23 @@ public class VisitorDTO {
     public void setMoney(Long money) {
         this.money = money;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VisitorDTO that = (VisitorDTO) o;
+
+        if (!money.equals(that.money)) return false;
+        return age.equals(that.age);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = money.hashCode();
+        result = 31 * result + age.hashCode();
+        return result;
+    }
 }

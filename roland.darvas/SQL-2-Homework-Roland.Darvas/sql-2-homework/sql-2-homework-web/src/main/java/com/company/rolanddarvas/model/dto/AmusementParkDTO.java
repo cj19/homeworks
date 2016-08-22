@@ -68,4 +68,29 @@ public class AmusementParkDTO {
     public void setLand(Long land) {
         this.land = land;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AmusementParkDTO that = (AmusementParkDTO) o;
+
+        if (!name.equals(that.name)) return false;
+        if (!address.equals(that.address)) return false;
+        if (!fund.equals(that.fund)) return false;
+        if (!ticketPrice.equals(that.ticketPrice)) return false;
+        return land.equals(that.land);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + fund.hashCode();
+        result = 31 * result + ticketPrice.hashCode();
+        result = 31 * result + land.hashCode();
+        return result;
+    }
 }

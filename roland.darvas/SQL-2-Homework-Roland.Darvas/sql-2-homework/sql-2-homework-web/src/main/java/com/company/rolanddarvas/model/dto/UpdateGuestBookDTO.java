@@ -38,6 +38,27 @@ public class UpdateGuestBookDTO {
     public void setRecord(String record) {
         this.record = record;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UpdateGuestBookDTO that = (UpdateGuestBookDTO) o;
+
+        if (!parkId.equals(that.parkId)) return false;
+        if (!visitorId.equals(that.visitorId)) return false;
+        return record.equals(that.record);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = parkId.hashCode();
+        result = 31 * result + visitorId.hashCode();
+        result = 31 * result + record.hashCode();
+        return result;
+    }
 }
 
 

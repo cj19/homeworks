@@ -27,14 +27,14 @@ public class Machine {
 
     private Long requiredSpace;
 
-    private int freeSpace;
+    private Integer freeSpace;
 
     @Enumerated(EnumType.STRING)
     private MachineType type;
 
-    private int ageLimit;
+    private Integer ageLimit;
 
-    private boolean closed;
+    private Boolean closed;
 
     @ManyToOne(targetEntity = AmusementPark.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "amusement_park_id")
@@ -156,16 +156,16 @@ public class Machine {
 
         Machine machine = (Machine) o;
 
-        if (freeSpace != machine.freeSpace) return false;
-        if (ageLimit != machine.ageLimit) return false;
-        if (closed != machine.closed) return false;
         if (!id.equals(machine.id)) return false;
         if (!fancyName.equals(machine.fancyName)) return false;
         if (!size.equals(machine.size)) return false;
         if (!price.equals(machine.price)) return false;
         if (!ticketPrice.equals(machine.ticketPrice)) return false;
         if (!requiredSpace.equals(machine.requiredSpace)) return false;
+        if (!freeSpace.equals(machine.freeSpace)) return false;
         if (type != machine.type) return false;
+        if (!ageLimit.equals(machine.ageLimit)) return false;
+        if (!closed.equals(machine.closed)) return false;
         if (!amusementPark.equals(machine.amusementPark)) return false;
         return visitors.equals(machine.visitors);
 
@@ -179,10 +179,10 @@ public class Machine {
         result = 31 * result + price.hashCode();
         result = 31 * result + ticketPrice.hashCode();
         result = 31 * result + requiredSpace.hashCode();
-        result = 31 * result + freeSpace;
+        result = 31 * result + freeSpace.hashCode();
         result = 31 * result + type.hashCode();
-        result = 31 * result + ageLimit;
-        result = 31 * result + (closed ? 1 : 0);
+        result = 31 * result + ageLimit.hashCode();
+        result = 31 * result + closed.hashCode();
         result = 31 * result + amusementPark.hashCode();
         result = 31 * result + visitors.hashCode();
         return result;
