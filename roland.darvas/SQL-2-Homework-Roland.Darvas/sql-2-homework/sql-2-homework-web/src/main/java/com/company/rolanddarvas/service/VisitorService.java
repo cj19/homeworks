@@ -73,7 +73,7 @@ public class VisitorService {
         AmusementParkManagement.checkMachineAndVisitorAreInTheSamePark(visitor, machine);
         MachineManagement.checkVisitorNotOnMachine(visitor);
         MachineManagement.checkFreeSpaces(machine);
-        VisitorManagement.chechAgeLimit(machine, visitor);
+        VisitorManagement.checkAgeLimit(machine, visitor);
 
         VisitorManagement.payMachineTicket(machine, visitor);
         Utility.addVisitorToMachine(machine, visitor);
