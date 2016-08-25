@@ -18,14 +18,14 @@ public class MachineManagement {
     }
 
     public static void checkMachineIsClosed(Machine machine) {
-        if (isClosed(machine)) {
-            throw new MachineIsNotClosed("Machine is closed !");
+        if (!isClosed(machine)) {
+            throw new MachineIsNotClosed("Machine is not closed yet!");
         }
     }
 
     public static void checkMachineIsNotClosed(Machine machine) {
-        if (!isClosed(machine)) {
-            throw new MachineIsNotClosed("Machine is not closed yet!");
+        if (isClosed(machine)) {
+            throw new MachineIsNotClosed("Machine is closed!");
         }
     }
     private static boolean isEmpty(Machine machine) {
@@ -49,7 +49,7 @@ public class MachineManagement {
 
     public static void machineIsNotInAmusementPark(Machine machine) {
         if (isInAmusementPark(machine)) {
-            throw new MachineNotInAmusementPark("Machine hasn't been added into Amusement Park yet!");
+            throw new MachineNotInAmusementPark("Machine added into Amusement Park!");
         }
     }
 

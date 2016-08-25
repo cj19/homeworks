@@ -56,7 +56,7 @@ public class MachineService {
 
     public Machine closeMachineById(Long machineId) {
         Machine machine = getMachineById(machineId);
-        MachineManagement.checkMachineIsClosed(machine);
+        MachineManagement.checkMachineIsNotClosed(machine);
         MachineManagement.checkMachineEmpty(machine);
 
         machine.setClosed(true);
