@@ -175,7 +175,7 @@ Machine.getLimited
 
 get machines with the age restriction
 
-GET /sql-2-homework-web/app/machine/limeted/{ageLimit}
+GET /sql-2-homework-web/app/machine/limited/{ageLimit}
 
 Machine.delete
 
