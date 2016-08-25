@@ -28,11 +28,11 @@ public class Visitor {
 
     private Boolean active;
 
-    @ManyToOne(targetEntity = AmusementPark.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = AmusementPark.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "current_park_id")
     private AmusementPark currentPark;
 
-    @ManyToOne(targetEntity = Machine.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Machine.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "current_machine_id")
     private Machine currentMachine;
 

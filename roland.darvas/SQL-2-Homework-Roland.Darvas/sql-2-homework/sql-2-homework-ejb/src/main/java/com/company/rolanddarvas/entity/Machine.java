@@ -41,7 +41,7 @@ public class Machine {
     private AmusementPark amusementPark;
 
     @OneToMany(mappedBy = "currentMachine", targetEntity = Visitor.class,
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Visitor> visitors;
 
     public Long getId() {
