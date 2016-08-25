@@ -47,7 +47,7 @@ public class MachineService {
     }
 
     public Machine getMachineById(Long machineId) {
-        Machine machine = getMachineById(machineId);
+        Machine machine = machineRepository.find(Machine.class, machineId);
         if (machine == null) {
             throw new EntityNotFoundException("Machine not found with this id: " + machineId);
         }
