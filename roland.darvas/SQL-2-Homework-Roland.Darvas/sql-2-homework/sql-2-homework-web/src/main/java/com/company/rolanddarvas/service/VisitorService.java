@@ -111,7 +111,7 @@ public class VisitorService {
     public Visitor leaveAmusementPark(Long visitorId) {
         Visitor visitor = getVisitorById(visitorId);
         AmusementParkManagement.checkVisitorInAmusementPark(visitor);
-        MachineManagement.checkVisitorOnMachine(visitor);
+        MachineManagement.checkVisitorNotOnMachine(visitor);
 
         AmusementPark amusementPark = visitor.getCurrentPark();
 

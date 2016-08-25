@@ -28,6 +28,7 @@ public class MachineManagement {
             throw new MachineIsNotClosed("Machine is closed!");
         }
     }
+
     private static boolean isEmpty(Machine machine) {
         return machine.getVisitors().isEmpty();
     }
@@ -58,23 +59,22 @@ public class MachineManagement {
     }
 
     public static void checkVisitorOnMachine(Visitor visitor) {
-        if (isVisitorOnMachine(visitor)) {
-            throw new VisitorOnMachine("Visitor is still using a machine!");
-        }
-    }
-
-    public static void checkVisitorNotOnMachine(Visitor visitor) {
         if (!isVisitorOnMachine(visitor)) {
-            throw new VisitorOnMachine("Visitor is not using machine!");
-        }
-    }
-    private static boolean hasMachineFreeSpaces(Machine machine) {
-        return machine.getFreeSpace() - machine.getVisitors().size() > 0;
-    }
+            throw new VisitorOnMachine("Visitor is not using a machine!");
+        }}
 
-    public static void checkFreeSpaces(Machine machine) {
-        if (!hasMachineFreeSpaces(machine)) {
-            throw new MachineNotGotEnoughFreeSpaces("No remaining spaces left on this machine!");
+        public static void checkVisitorNotOnMachine (Visitor visitor){
+            if (isVisitorOnMachine(visitor)) {
+                throw new VisitorOnMachine("Visitor is still using machine!");
+            }
+        }
+        private static boolean hasMachineFreeSpaces (Machine machine){
+            return machine.getFreeSpace() - machine.getVisitors().size() > 0;
+        }
+
+        public static void checkFreeSpaces (Machine machine){
+            if (!hasMachineFreeSpaces(machine)) {
+                throw new MachineNotGotEnoughFreeSpaces("No remaining spaces left on this machine!");
+            }
         }
     }
-}
