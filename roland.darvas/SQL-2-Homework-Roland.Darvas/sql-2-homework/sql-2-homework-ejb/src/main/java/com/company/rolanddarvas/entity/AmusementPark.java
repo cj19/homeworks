@@ -100,35 +100,17 @@ public class AmusementPark {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         AmusementPark that = (AmusementPark) o;
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!name.equals(that.name)) {
-            return false;
-        }
-        if (!address.equals(that.address)) {
-            return false;
-        }
-        if (!fund.equals(that.fund)) {
-            return false;
-        }
-        if (!land.equals(that.land)) {
-            return false;
-        }
-        if (!ticketPrice.equals(that.ticketPrice)) {
-            return false;
-        }
-        if (visitors != null ? !visitors.equals(that.visitors) : that.visitors != null) {
-            return false;
-        }
-        return machines != null ? machines.equals(that.machines) : that.machines == null;
+
+        if (!id.equals(that.id)) return false;
+        if (!name.equals(that.name)) return false;
+        if (!address.equals(that.address)) return false;
+        if (!fund.equals(that.fund)) return false;
+        if (!land.equals(that.land)) return false;
+        return ticketPrice.equals(that.ticketPrice);
 
     }
 
@@ -140,8 +122,6 @@ public class AmusementPark {
         result = 31 * result + fund.hashCode();
         result = 31 * result + land.hashCode();
         result = 31 * result + ticketPrice.hashCode();
-        result = 31 * result + (visitors != null ? visitors.hashCode() : 0);
-        result = 31 * result + (machines != null ? machines.hashCode() : 0);
         return result;
     }
 }

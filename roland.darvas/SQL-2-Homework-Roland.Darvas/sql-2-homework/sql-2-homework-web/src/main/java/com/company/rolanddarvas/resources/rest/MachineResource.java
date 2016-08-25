@@ -64,7 +64,7 @@ public class MachineResource {
 
     @POST
     @Path("{machineId}/{parkId}")
-    public Response addToPark(@PathParam("machineId") Long machineId, Long parkId) {
+    public Response addToPark(@PathParam("machineId") Long machineId,@PathParam("parkId") Long parkId) {
         Machine machine = machineService.addToAmusementParkById(machineId, parkId);
         return Response.ok(machine).build();
     }

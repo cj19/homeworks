@@ -103,38 +103,21 @@ public class MachineDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         MachineDTO that = (MachineDTO) o;
-        if (!fancyName.equals(that.fancyName)){
-            return false;
-        }
-        if (!size.equals(that.size)) {
-            return false;
-        }
-        if (!price.equals(that.price)) {
-            return false;
-        }
-        if (!ticketPrice.equals(that.ticketPrice)){
-            return false;
-        }
-        if (!requiredSpace.equals(that.requiredSpace)){
-            return false;
-        }
-        if (!freeSpace.equals(that.freeSpace)){
-            return false;
-        }
-        if (!ageLimit.equals(that.ageLimit)){
-            return false;
-        }
-        if (type != that.type){
-            return false;
-        }
+
+        if (!fancyName.equals(that.fancyName)) return false;
+        if (!size.equals(that.size)) return false;
+        if (!price.equals(that.price)) return false;
+        if (!ticketPrice.equals(that.ticketPrice)) return false;
+        if (!requiredSpace.equals(that.requiredSpace)) return false;
+        if (!freeSpace.equals(that.freeSpace)) return false;
+        if (!ageLimit.equals(that.ageLimit)) return false;
+        if (type != that.type) return false;
         return closed.equals(that.closed);
+
     }
 
     @Override

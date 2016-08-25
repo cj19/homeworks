@@ -45,19 +45,13 @@ public class AmusementParkService {
     public AmusementPark updateAmusementPark(Long parkId, AmusementParkDTO amusementParkDTO) {
         AmusementPark currentAmusementPark = getAmusementParkById(parkId);
 
-        AmusementPark amusementPark = new AmusementPark();
+        currentAmusementPark.setAddress(amusementParkDTO.getAddress());
+        currentAmusementPark.setFund(amusementParkDTO.getFund());
+        currentAmusementPark.setName(amusementParkDTO.getName());
+        currentAmusementPark.setTicketPrice(amusementParkDTO.getTicketPrice());
+        currentAmusementPark.setLand(amusementParkDTO.getLand());
 
-        amusementPark.setId(parkId);
-
-        amusementPark.setMachines(currentAmusementPark.getMachines());
-        amusementPark.setVisitors(currentAmusementPark.getVisitors());
-        amusementPark.setAddress(amusementParkDTO.getAddress());
-        amusementPark.setFund(amusementParkDTO.getFund());
-        amusementPark.setName(amusementParkDTO.getName());
-        amusementPark.setTicketPrice(amusementParkDTO.getTicketPrice());
-        amusementPark.setLand(amusementParkDTO.getLand());
-
-        return updateAmusementPark(amusementPark);
+        return updateAmusementPark(currentAmusementPark);
     }
 
     public AmusementPark updateAmusementPark(AmusementPark amusementPark) {

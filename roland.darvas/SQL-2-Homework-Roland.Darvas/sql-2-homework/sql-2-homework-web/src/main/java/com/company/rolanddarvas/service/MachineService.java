@@ -47,9 +47,9 @@ public class MachineService {
     }
 
     public Machine getMachineById(Long machineId) {
-        Machine machine = machineRepository.find(Machine.class, machineId);
+        Machine machine = getMachineById(machineId);
         if (machine == null) {
-            throw new EntityNotFoundException("Machine not found with this id: " + machine);
+            throw new EntityNotFoundException("Machine not found with this id: " + machineId);
         }
         return machine;
     }
@@ -76,21 +76,16 @@ public class MachineService {
     public Machine updateMachine(Long machineId, MachineDTO machineDTO) {
         Machine currentMachine = getMachineById(machineId);
 
-        Machine machine = new Machine();
+        currentMachine.setFancyName(machineDTO.getFancyName());
+        currentMachine.setAgeLimit(machineDTO.getAgeLimit());
+        currentMachine.setType(machineDTO.getType());
+        currentMachine.setFreeSpace(machineDTO.getFreeSpace());
+        currentMachine.setSize(machineDTO.getSize());
+        currentMachine.setPrice(machineDTO.getPrice());
+        currentMachine.setTicketPrice(machineDTO.getTicketPrice());
+        currentMachine.setClosed(machineDTO.getClosed());
 
-        machine.setId(machineId);
-        machine.setAmusementPark(currentMachine.getAmusementPark());
-        machine.setVisitors(currentMachine.getVisitors());
-
-        machine.setFancyName(machineDTO.getFancyName());
-        machine.setAgeLimit(machineDTO.getAgeLimit());
-        machine.setType(machineDTO.getType());
-        machine.setFreeSpace(machineDTO.getFreeSpace());
-        machine.setSize(machineDTO.getSize());
-        machine.setPrice(machineDTO.getPrice());
-        machine.setTicketPrice(machineDTO.getTicketPrice());
-
-        return updateMachine(machine);
+        return updateMachine(currentMachine);
     }
 
     public Machine updateMachine(Machine machine) {
@@ -109,7 +104,7 @@ public class MachineService {
     }
 
     public Machine addToAmusementParkById(Long machineId, Long amusementParkId) {
-        Machine machine = machineRepository.getMachineByParkId(machineId);
+        Machine machine = machineRepository.find(Machine.class, machineId);
         MachineManagement.machineIsNotInAmusementPark(machine);
 
         AmusementPark amusementPark = amusementParkService.getAmusementParkById(amusementParkId);

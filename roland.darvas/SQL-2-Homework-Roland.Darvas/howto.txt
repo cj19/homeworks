@@ -157,7 +157,7 @@ Machine.closeMachine
 
 close opened machine
 
-POST /sql-2-homework-web/app/machine/{id}/closed
+POST /sql-2-homework-web/app/machine/{id}/close
 
 Machine.openMachine
 
@@ -299,7 +299,7 @@ Guestbook.getBooksByVisitorAndParkId
 
 get guestbook records By visitor id and park id
 
-GET /sql-2-homework-web/app/guestbook/visitor/{visitorId}/{parkId}
+GET /sql-2-homework-web/app/guestbook/{visitorId}/{parkId}
 
 Guestbook.updateBook
 

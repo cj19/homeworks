@@ -25,7 +25,7 @@ public class AmusementParkRepository extends EntityRepository {
 
     public Long getIdleVisitors(Long parkId){
         return entityManager
-                .createQuery("SELECT COUNT(v.id) FROM Visitor v WHERE v.currentPark = :parkId AND v.currentMachine IS NULL AND v.active = FALSE", Long.class)
+                .createQuery("SELECT COUNT(v.id) FROM Visitor v WHERE v.currentPark.id = :parkId AND v.currentMachine IS NULL AND v.active = FALSE", Long.class)
                 .setParameter("parkId", parkId).getSingleResult();
     }
 }

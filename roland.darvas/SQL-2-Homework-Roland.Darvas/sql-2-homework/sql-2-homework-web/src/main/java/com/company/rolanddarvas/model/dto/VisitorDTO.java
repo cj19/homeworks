@@ -36,16 +36,12 @@ public class VisitorDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
         VisitorDTO that = (VisitorDTO) o;
-        if (!money.equals(that.money)){
-            return false;
-        }
+
+        if (!money.equals(that.money)) return false;
         return age.equals(that.age);
 
     }

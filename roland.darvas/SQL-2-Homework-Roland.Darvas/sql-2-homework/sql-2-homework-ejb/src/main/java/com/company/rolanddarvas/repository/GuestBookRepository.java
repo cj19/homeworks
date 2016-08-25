@@ -22,21 +22,21 @@ public class GuestBookRepository extends EntityRepository {
 
     public List<GuestBook> findGuestBookByVisitorId(Long visitorId){
         TypedQuery<GuestBook> query =
-                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :visitorId", GuestBook.class);
+                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId.id = :visitorId", GuestBook.class);
         query.setParameter("visitorId", visitorId);
         return query.getResultList();
     }
 
     public List<GuestBook> findGuestBookByAmusementParkId(Long amusementParkId){
         TypedQuery<GuestBook> query =
-                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :amusementParkId", GuestBook.class);
+                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.amusementParkId.id = :amusementParkId", GuestBook.class);
         query.setParameter("amusementParkId", amusementParkId);
         return query.getResultList();
     }
 
     public List<GuestBook> findGuestBookByVisitorAndParkId(Long visitorId, Long parkId) {
         TypedQuery<GuestBook> query =
-                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId = :visitorId AND g.amusementParkId = :parkId", GuestBook.class);
+                entityManager.createQuery("SELECT g FROM GuestBook g WHERE g.visitorId.id = :visitorId AND g.amusementParkId.id = :parkId", GuestBook.class);
         query.setParameter("visitorId", visitorId);
         query.setParameter("parkId", parkId);
         return query.getResultList();

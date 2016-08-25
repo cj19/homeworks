@@ -45,7 +45,7 @@ public class VisitorService {
     public Visitor getVisitorById(Long visitorId) {
         Visitor visitor = visitorRepository.find(Visitor.class, visitorId);
         if (visitor == null) {
-            throw new EntityNotFoundException("Visitor not found with this id: "+visitorId);
+            throw new EntityNotFoundException("Visitor not found with this id: " + visitorId);
         }
         return visitor;
     }
@@ -54,17 +54,10 @@ public class VisitorService {
     public Visitor updateVisitor(Long visitorId, VisitorDTO visitorDTO) {
         Visitor currentVisitor = getVisitorById(visitorId);
 
-        Visitor visitor = new Visitor();
-        visitor.setId(currentVisitor.getId());
+        currentVisitor.setAge(visitorDTO.getAge());
+        currentVisitor.setMoney(visitorDTO.getMoney());
 
-        visitor.setCurrentPark(currentVisitor.getCurrentPark());
-        visitor.setCurrentMachine(currentVisitor.getCurrentMachine());
-        visitor.setEnteringDate(currentVisitor.getEnteringDate());
-
-        visitor.setAge(visitorDTO.getAge());
-        visitor.setMoney(visitorDTO.getMoney());
-
-        return updateVisitor(visitor);
+        return updateVisitor(currentVisitor);
 
     }
 
@@ -76,9 +69,9 @@ public class VisitorService {
         Visitor visitor = getVisitorById(visitorId);
         Machine machine = machineService.getMachineById(machineId);
 
-        MachineManagement.checkMachineIsClosed(machine);
+        MachineManagement.checkMachineIsNotClosed(machine);
         AmusementParkManagement.checkMachineAndVisitorAreInTheSamePark(visitor, machine);
-        MachineManagement.checkVisitorOnMachine(visitor);
+        MachineManagement.checkVisitorNotOnMachine(visitor);
         MachineManagement.checkFreeSpaces(machine);
         VisitorManagement.chechAgeLimit(machine, visitor);
 
@@ -104,7 +97,7 @@ public class VisitorService {
 
     public Visitor enterAmusementPark(Long visitorId, Long parkId) {
         Visitor visitor = getVisitorById(visitorId);
-        AmusementParkManagement.checkVisitorInAmusementPark(visitor);
+        AmusementParkManagement.checkVisitorNotInAmusementPark(visitor);
 
         AmusementPark amusementPark = amusementParkService.getAmusementParkById(parkId);
 
@@ -121,11 +114,13 @@ public class VisitorService {
         MachineManagement.checkVisitorOnMachine(visitor);
 
         AmusementPark amusementPark = visitor.getCurrentPark();
+
         Utility.removeVisitorFromPark(visitor, amusementPark);
 
         amusementParkService.updateAmusementPark(amusementPark);
         return updateVisitor(visitor);
     }
+
     public VisitorListDTO getActiveVisitors() {
         return new VisitorListDTO(visitorRepository.getActiveVisitor());
     }
@@ -141,6 +136,7 @@ public class VisitorService {
     public VisitorListDTO getAllVisitors() {
         return new VisitorListDTO(visitorRepository.findAll());
     }
+
     @Inject
     public void setMachineService(MachineService machineService) {
         this.machineService = machineService;

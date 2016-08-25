@@ -22,6 +22,12 @@ public class AmusementParkManagement {
     }
 
     public static void checkVisitorInAmusementPark(Visitor visitor) {
+        if (!isVisitorInAmusementPark(visitor)) {
+            throw new VisitorIsInAmusementPark("Visitor is not in a park!");
+        }
+    }
+
+    public static void checkVisitorNotInAmusementPark(Visitor visitor) {
         if (isVisitorInAmusementPark(visitor)) {
             throw new VisitorIsInAmusementPark("Visitor is in a park!");
         }
@@ -72,7 +78,7 @@ public class AmusementParkManagement {
     }
 
     public static void removeMachineFromAmusementPark(Machine machine) {
-        if (isMachineInThisAmusementPark(machine)) {
+        if (!isMachineInThisAmusementPark(machine)) {
             throw new MachineIsNotInThisPark("Machine is not in this Amusement Park, can't be removed!");
         }
         machine.getAmusementPark().getMachines().remove(machine);
@@ -80,13 +86,15 @@ public class AmusementParkManagement {
     }
 
     public static void transferFunds(Machine machine) {
-        AmusementPark amusementPark = machine.getAmusementPark();
-        amusementPark.setLand(amusementPark.getLand() + machine.getSize());
-        amusementPark.setFund(amusementPark.getFund() + machine.getPrice());
+        if (isMachineInThisAmusementPark(machine)) {
+            AmusementPark amusementPark = machine.getAmusementPark();
+            amusementPark.setLand(amusementPark.getLand() + machine.getSize());
+            amusementPark.setFund(amusementPark.getFund() + machine.getPrice());
+        }
     }
 
+
     private static boolean isMachineInThisAmusementPark(Machine machine) {
-        AmusementPark amusementPark = machine.getAmusementPark();
-        return amusementPark != null && Objects.equals(amusementPark, machine.getAmusementPark());
+        return machine.getAmusementPark() != null;
     }
 }

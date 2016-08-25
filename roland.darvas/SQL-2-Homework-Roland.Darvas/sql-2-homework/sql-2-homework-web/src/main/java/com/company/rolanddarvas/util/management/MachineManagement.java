@@ -19,10 +19,15 @@ public class MachineManagement {
 
     public static void checkMachineIsClosed(Machine machine) {
         if (isClosed(machine)) {
-            throw new MachineIsNotClosed("Machine is not closed yet!");
+            throw new MachineIsNotClosed("Machine is closed !");
         }
     }
 
+    public static void checkMachineIsNotClosed(Machine machine) {
+        if (!isClosed(machine)) {
+            throw new MachineIsNotClosed("Machine is not closed yet!");
+        }
+    }
     private static boolean isEmpty(Machine machine) {
         return machine.getVisitors().isEmpty();
     }
@@ -43,7 +48,7 @@ public class MachineManagement {
     }
 
     public static void machineIsNotInAmusementPark(Machine machine) {
-        if (!isInAmusementPark(machine)) {
+        if (isInAmusementPark(machine)) {
             throw new MachineNotInAmusementPark("Machine hasn't been added into Amusement Park yet!");
         }
     }
@@ -58,6 +63,11 @@ public class MachineManagement {
         }
     }
 
+    public static void checkVisitorNotOnMachine(Visitor visitor) {
+        if (!isVisitorOnMachine(visitor)) {
+            throw new VisitorOnMachine("Visitor is not using machine!");
+        }
+    }
     private static boolean hasMachineFreeSpaces(Machine machine) {
         return machine.getFreeSpace() - machine.getVisitors().size() > 0;
     }
