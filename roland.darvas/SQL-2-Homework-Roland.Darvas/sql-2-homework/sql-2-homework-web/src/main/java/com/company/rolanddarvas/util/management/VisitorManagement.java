@@ -40,7 +40,7 @@ public class VisitorManagement {
         return visitor.getAge() >= machine.getAgeLimit();
     }
 
-    public static void chechAgeLimit(Machine machine, Visitor visitor) {
+    public static void checkAgeLimit(Machine machine, Visitor visitor) {
         if (!isAboveAgeLimit(machine, visitor)) {
             throw new AgeLimit("Visitor is not old enough!");
         }
